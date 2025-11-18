@@ -150,7 +150,7 @@ export default function ContactUs() {
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .info-item h3 {
@@ -194,18 +194,26 @@ export default function ContactUs() {
         .form-group textarea {
           width: 100%;
           padding: 1rem;
-          border: 2px solid rgba(235, 28, 36, 0.2);
+          border: 2px solid rgba(235, 28, 36, 0.3);
           background: white;
           font-family: 'Poppins', sans-serif;
           font-size: 1rem;
           color: var(--text-black);
           transition: border-color 0.3s ease;
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
           outline: none;
+          border-color: var(--primary-red);
+        }
+        
+        .info-item {
+          transition: border-color 0.3s ease;
+        }
+        
+        .info-item:hover {
           border-color: var(--primary-red);
         }
         

@@ -65,16 +65,16 @@ export default function WhyChooseUs() {
           align-items: flex-start;
           background: white;
           padding: 2rem;
-          border: 2px solid rgba(235, 28, 36, 0.2);
-          border-radius: 8px;
+          border: 2px solid rgba(235, 28, 36, 0.3);
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .feature-item:hover {
           transform: translateY(-5px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          border-color: rgba(235, 28, 36, 0.4);
+          border-color: var(--primary-red);
         }
         
         .feature-icon {

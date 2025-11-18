@@ -115,8 +115,14 @@ export default function HowItWorks() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          border: 3px solid rgba(235, 28, 36, 0.6);
+          border: 2px solid rgba(235, 28, 36, 0.3);
           clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+          transition: border-color 0.3s ease;
+        }
+        
+        .flip-card-wrapper:hover .flip-card-front,
+        .flip-card-wrapper:hover .flip-card-back {
+          border-color: var(--primary-red);
         }
         
         .flip-card-back {
@@ -135,7 +141,7 @@ export default function HowItWorks() {
           align-items: center;
           justify-content: center;
           margin-bottom: 1rem;
-          clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .step-number-back {
@@ -149,7 +155,7 @@ export default function HowItWorks() {
           align-items: center;
           justify-content: center;
           margin-bottom: 1rem;
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .step-title {

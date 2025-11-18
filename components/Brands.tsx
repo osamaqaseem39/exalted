@@ -110,8 +110,8 @@ export default function Brands() {
           justify-content: center;
           padding: 1.5rem 2rem;
           background: white;
-          border: 2px solid rgba(235, 28, 36, 0.1);
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           transition: all 0.3s ease;
           height: 150px;
           min-width: fit-content;

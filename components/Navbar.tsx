@@ -17,9 +17,9 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       {/* Top Bar */}
-      <div className="top-bar">
+      <div className={`top-bar ${isScrolled ? 'hidden' : ''}`}>
         <div className="container">
           <div className="top-bar-content">
             <div className="top-bar-left">
@@ -92,6 +92,7 @@ export default function Navbar() {
           right: 0;
           z-index: 1000;
           width: 100%;
+          transition: all 0.3s ease;
         }
         
         .top-bar {
@@ -100,6 +101,16 @@ export default function Navbar() {
           padding: 0.6rem 0;
           font-size: 0.9rem;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          max-height: 100px;
+          overflow: hidden;
+        }
+        
+        .top-bar.hidden {
+          max-height: 0;
+          padding: 0;
+          opacity: 0;
+          visibility: hidden;
         }
         
         .top-bar-content {
@@ -163,6 +174,28 @@ export default function Navbar() {
           border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         
+        .header.scrolled {
+          top: 1rem;
+        }
+        
+        .header.scrolled .navbar {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+          margin: 0 auto;
+          max-width: 1200px;
+          width: calc(100% - 2.5rem);
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+          transition: border-color 0.3s ease;
+        }
+        
+        .header.scrolled .navbar .container {
+          padding: 0 20px;
+        }
+        
+        .header.scrolled .navbar:hover {
+          border-color: var(--primary-red);
+        }
+        
         .navbar.scrolled {
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
@@ -172,6 +205,15 @@ export default function Navbar() {
           justify-content: space-between;
           align-items: center;
           padding: 1.2rem 0;
+          transition: padding 0.3s ease;
+        }
+        
+        .header.scrolled .nav-content {
+          padding: 0.8rem 0;
+        }
+        
+        .header.scrolled .logo-image {
+          max-height: 40px;
         }
         
         .logo {
@@ -186,6 +228,7 @@ export default function Navbar() {
           width: auto;
           max-height: 50px;
           object-fit: contain;
+          transition: max-height 0.3s ease;
         }
         
         .nav-links {

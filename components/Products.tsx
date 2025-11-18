@@ -590,20 +590,20 @@ export default function Products() {
         
         .product-card {
           background: white;
-          border: 2px solid rgba(235, 28, 36, 0.2);
-          border-radius: 8px;
+          border: 2px solid rgba(235, 28, 36, 0.3);
           overflow: hidden;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           display: flex;
           flex-direction: column;
           height: 500px;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .product-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-          border-color: rgba(235, 28, 36, 0.4);
+          border-color: var(--primary-red);
         }
         
         .product-image-container {
@@ -706,13 +706,13 @@ export default function Products() {
           background: var(--primary-red);
           color: white;
           border: 2px solid var(--primary-red);
-          border-radius: 8px;
           font-size: 1rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
         
         .btn-show-more::before {

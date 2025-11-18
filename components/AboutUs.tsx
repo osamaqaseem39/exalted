@@ -4,12 +4,12 @@ export default function AboutUs() {
   return (
     <section id="about" className="section about-section">
       <div className="container">
-        <h2 className="section-title">About Us</h2>
-        <p className="section-subtitle">EXALTED Coding & Packing Solutions</p>
-        
         {/* Combined About Us Card */}
         <div className="about-combined-card-wrapper">
           <div className="about-combined-card card">
+            <h2 className="about-title">About Us</h2>
+            <p className="about-subtitle">EXALTED Coding & Packing Solutions</p>
+            
             {/* Who We Are Content */}
             <div className="about-text-content">
               <p>
@@ -85,7 +85,28 @@ export default function AboutUs() {
         .about-combined-card {
           width: 100%;
           padding: 3rem;
-          border: 2px solid rgba(235, 28, 36, 0.1);
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+          transition: border-color 0.3s ease;
+        }
+        
+        .about-combined-card:hover {
+          border-color: var(--primary-red);
+        }
+        
+        .about-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--text-black);
+          margin-bottom: 0.5rem;
+          text-align: center;
+        }
+        
+        .about-subtitle {
+          font-size: 1.1rem;
+          color: var(--subheading-gray);
+          text-align: center;
+          margin-bottom: 3rem;
         }
         
         .about-text-content {
@@ -114,18 +135,23 @@ export default function AboutUs() {
           grid-template-columns: repeat(3, 1fr);
           gap: 1.5rem;
           padding-top: 2rem;
-          border-top: 2px solid rgba(235, 28, 36, 0.1);
+          border-top: 2px solid rgba(235, 28, 36, 0.3);
         }
         
         .mvg-card {
           padding: 1.5rem 1.5rem;
           text-align: center;
           background: rgba(235, 28, 36, 0.03);
-          border: 1px solid rgba(235, 28, 36, 0.1);
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           display: flex;
           flex-direction: column;
           height: 100%;
+          transition: border-color 0.3s ease;
+        }
+        
+        .mvg-card:hover {
+          border-color: var(--primary-red);
         }
         
         .mvg-icon {
@@ -183,6 +209,15 @@ export default function AboutUs() {
         @media (max-width: 768px) {
           .about-combined-card {
             padding: 1.5rem;
+          }
+          
+          .about-title {
+            font-size: 2rem;
+          }
+          
+          .about-subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
           }
           
           .about-text-content {
