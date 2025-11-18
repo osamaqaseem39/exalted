@@ -8,16 +8,18 @@ import CTA from '@/components/CTA'
 import ContactUs from '@/components/ContactUs'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Preloader from '@/components/Preloader'
 
 export default function Home() {
   return (
     <main>
+      <Preloader />
       <Navbar />
       <Hero />
+      <Products />
       <AboutUs />
       <Brands />
       <WhyChooseUs />
-      <Products />
       <HowItWorks />
       <CTA />
       <ContactUs />
