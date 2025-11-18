@@ -521,8 +521,9 @@ export default function Products() {
           gap: 0.5rem;
           padding: 0.75rem 1.5rem;
           background: transparent;
-          border: 2px solid transparent;
-          border-radius: 8px;
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          border-radius: 0;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           cursor: pointer;
           transition: all 0.3s ease;
           font-size: 0.95rem;
@@ -533,7 +534,7 @@ export default function Products() {
         
         .tab-button:hover {
           background: rgba(235, 28, 36, 0.1);
-          border-color: rgba(235, 28, 36, 0.3);
+          border-color: rgba(235, 28, 36, 0.5);
         }
         
         .tab-button.active {
@@ -591,6 +592,7 @@ export default function Products() {
         .product-card {
           background: white;
           border: 2px solid rgba(235, 28, 36, 0.3);
+          border-radius: 0;
           overflow: hidden;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -654,8 +656,9 @@ export default function Products() {
           padding: 0.75rem 1rem;
           background: var(--primary-red);
           color: white;
-          border: none;
-          border-radius: 6px;
+          border: 2px solid var(--primary-red);
+          border-radius: 0;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           font-size: 0.9rem;
           font-weight: 600;
           cursor: pointer;
@@ -664,6 +667,7 @@ export default function Products() {
         
         .btn-learn-more:hover {
           background: #c41e28;
+          border-color: #c41e28;
           transform: translateY(-2px);
           box-shadow: 0 4px 8px rgba(235, 28, 36, 0.3);
         }
@@ -777,7 +781,9 @@ export default function Products() {
         
         .product-modal {
           background: white;
-          border-radius: 12px;
+          border: 2px solid rgba(235, 28, 36, 0.3);
+          border-radius: 0;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           max-width: 1200px;
           width: 100%;
           max-height: 90vh;
@@ -998,7 +1004,8 @@ export default function Products() {
           background: #f0f0f0;
           color: var(--text-black);
           border: 2px solid #f0f0f0;
-          border-radius: 6px;
+          border-radius: 0;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           font-size: 1rem;
           font-weight: 600;
           cursor: pointer;
@@ -1021,7 +1028,8 @@ export default function Products() {
           background: var(--primary-red);
           color: white;
           border: 2px solid var(--primary-red);
-          border-radius: 6px;
+          border-radius: 0;
+          clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
           font-size: 1rem;
           font-weight: 600;
           cursor: pointer;
