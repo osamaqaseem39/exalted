@@ -9,7 +9,7 @@ export default function CTA() {
         <div className="cta-content">
           <h2 className="cta-title">Ready to Transform Your Operations?</h2>
           <p className="cta-description">
-            Let's discuss how our coding and packing solutions can help your business achieve 
+            Let&apos;s discuss how our coding and packing solutions can help your business achieve 
             greater efficiency and success. Get in touch with us today!
           </p>
           <div className="cta-buttons">

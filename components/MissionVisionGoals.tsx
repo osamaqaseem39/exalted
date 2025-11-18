@@ -14,7 +14,7 @@ export default function MissionVisionGoals() {
             <p className="mvg-content">
               To deliver exceptional coding and packing solutions that empower businesses to achieve 
               operational excellence. We are committed to providing innovative, reliable, and cost-effective 
-              services that exceed our clients' expectations while maintaining the highest standards of quality.
+              services that exceed our clients&apos; expectations while maintaining the highest standards of quality.
             </p>
           </div>
           
