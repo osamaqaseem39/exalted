@@ -351,6 +351,11 @@ export default function Products() {
                     
                     <div className="product-card-content">
                       <h4 className="product-name">{product.name}</h4>
+                      <p className="product-description">
+                        {product.description.length > 100 
+                          ? `${product.description.substring(0, 100)}...` 
+                          : product.description}
+                      </p>
                       
                       <div className="product-buttons">
                         <button
@@ -624,7 +629,15 @@ export default function Products() {
           font-size: 1.4rem;
           font-weight: 700;
           color: var(--primary-red);
+          margin-bottom: 0.75rem;
+        }
+        
+        .product-description {
+          color: var(--subheading-gray);
+          font-size: 0.95rem;
+          line-height: 1.6;
           margin-bottom: 1rem;
+          flex: 1;
         }
         
         .product-buttons {

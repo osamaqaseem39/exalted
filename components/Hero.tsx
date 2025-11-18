@@ -27,7 +27,10 @@ export default function Hero() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+          background-image: url('/images/herobg.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
           padding-top: 140px;
           position: relative;
           overflow: hidden;
@@ -37,10 +40,10 @@ export default function Hero() {
           content: '';
           position: absolute;
           top: 0;
+          left: 0;
           right: 0;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(135deg, rgba(235, 28, 36, 0.05) 0%, transparent 100%);
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
           z-index: 0;
         }
         
@@ -54,24 +57,27 @@ export default function Hero() {
         .hero-title {
           font-size: 4.5rem;
           font-weight: 700;
-          color: var(--text-black);
+          color: white;
           margin-bottom: 1rem;
           line-height: 1.2;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .hero-subtitle {
           display: block;
           font-size: 1.8rem;
           font-weight: 400;
-          color: var(--subheading-gray);
+          color: rgba(255, 255, 255, 0.9);
           margin-top: 0.5rem;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .hero-description {
           font-size: 1.2rem;
-          color: var(--subheading-gray);
+          color: rgba(255, 255, 255, 0.95);
           margin: 2rem 0 3rem;
           line-height: 1.8;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .hero-buttons {
