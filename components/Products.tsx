@@ -1,34 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+interface Product {
+  name: string
+  description: string
+  images: string[]
+  technology?: string
+  printSpecs?: string
+  features?: string
+  type?: string
+  targetProduct?: string
+  application?: string
+}
 
 export default function Products() {
   const [activeTab, setActiveTab] = useState('all')
-  const [flippedCards, setFlippedCards] = useState<{ [key: string]: boolean }>({})
-  const [imageIndices, setImageIndices] = useState<{ [key: string]: number }>({})
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [modalImageIndex, setModalImageIndex] = useState(0)
+  const [productsToShow, setProductsToShow] = useState(6)
+  const [prevProductsToShow, setPrevProductsToShow] = useState(6)
 
-  const toggleCard = (productKey: string) => {
-    setFlippedCards(prev => ({
-      ...prev,
-      [productKey]: !prev[productKey]
-    }))
-  }
-
-  const nextImage = (productKey: string, totalImages: number, e: React.MouseEvent) => {
-    e.stopPropagation()
-    setImageIndices(prev => ({
-      ...prev,
-      [productKey]: ((prev[productKey] || 0) + 1) % totalImages
-    }))
-  }
-
-  const prevImage = (productKey: string, totalImages: number, e: React.MouseEvent) => {
-    e.stopPropagation()
-    setImageIndices(prev => ({
-      ...prev,
-      [productKey]: ((prev[productKey] || 0) - 1 + totalImages) % totalImages
-    }))
-  }
   const productCategories = [
     {
       category: 'Coding & Marking (Primary/Small Character)',
@@ -259,261 +251,254 @@ export default function Products() {
 
   const displayProducts = getDisplayProducts()
 
-  return (
-    <section id="products" className="section products-section">
-      <div className="container">
-        <h2 className="section-title">Our Products</h2>
-        <p className="section-subtitle">Comprehensive solutions for all your coding and packing needs</p>
-        
-        {/* Tabs */}
-        <div className="tabs-container">
-          <button
-            className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveTab('all')}
-          >
-            <span className="tab-icon">📋</span>
-            <span className="tab-text">All Products</span>
-          </button>
-          {productCategories.map((category, index) => (
-            <button
-              key={index}
-              className={`tab-button ${activeTab === category.category ? 'active' : ''}`}
-              onClick={() => setActiveTab(category.category)}
-            >
-              <span className="tab-icon">{category.icon}</span>
-              <span className="tab-text">{category.shortName || category.category}</span>
-            </button>
-          ))}
-        </div>
+  // Reset products to show when tab changes
+  useEffect(() => {
+    setProductsToShow(6)
+    setPrevProductsToShow(6)
+  }, [activeTab])
 
-        {/* Products Display */}
-        <div className="products-content">
-          {activeTab === 'all' ? (
-            // Show all products grouped by category
-            productCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="product-category-group">
-                <div className="category-header">
-                  <div className="category-icon">{category.icon}</div>
-                  <h3 className="category-title">{category.category}</h3>
-                </div>
-                <div className="products-grid">
-                  {category.products.map((product, productIndex) => {
-                    const productKey = `${category.category}-${productIndex}`
-                    const isFlipped = flippedCards[productKey] || false
-                    const currentImageIndex = imageIndices[productKey] || 0
-                    const productImages = product.images || ['/images/solution.jpg']
-                    const hasMultipleImages = productImages.length > 1
-                    
-                    return (
-                      <div
-                        key={productIndex}
-                        className="flip-card-wrapper"
-                        onMouseLeave={() => setFlippedCards(prev => ({ ...prev, [productKey]: false }))}
-                      >
-                        <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
-                          <div className="flip-card-inner">
-                            {/* Front Side */}
-                            <div className="flip-card-front card">
-                              {/* Image Slider */}
-                              <div className="product-image-container">
-                                <img
-                                  src={productImages[currentImageIndex]}
-                                  alt={product.name}
-                                  className="product-image"
-                                />
-                                {hasMultipleImages && (
-                                  <>
-                                    <button
-                                      className="image-nav-btn prev-btn"
-                                      onClick={(e) => prevImage(productKey, productImages.length, e)}
-                                    >
-                                      ‹
-                                    </button>
-                                    <button
-                                      className="image-nav-btn next-btn"
-                                      onClick={(e) => nextImage(productKey, productImages.length, e)}
-                                    >
-                                      ›
-                                    </button>
-                                    <div className="image-indicator">
-                                      {currentImageIndex + 1} / {productImages.length}
-                                    </div>
-                                  </>
-                                )}
-                              </div>
-                              
-                              <div className="product-card-content">
-                                <h4 className="product-name">{product.name}</h4>
-                                <p className="product-description">{product.description}</p>
-                                
-                                <div className="product-buttons">
-                                  <div className="buttons-row">
-                                    <button
-                                      className="btn-learn-more"
-                                      onClick={(e) => {
-                                        e.stopPropagation()
-                                        toggleCard(productKey)
-                                      }}
-                                    >
-                                      Learn More
-                                    </button>
-                                    <button className="btn-download" onClick={(e) => { e.stopPropagation(); }}>
-                                      📥
-                                    </button>
-                                  </div>
-                                  <button className="btn-quote" onClick={(e) => { e.stopPropagation(); }}>
-                                    Get a Quote
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* Back Side */}
-                            <div className="flip-card-back card">
-                              <div className="product-details">
-                                <h4 className="product-name">{product.name}</h4>
-                                
-                                <p className="product-description-back">{product.description}</p>
-                                
-                                {/* Key Features Section */}
-                                {product.features && (
-                                  <div className="product-features">
-                                    <strong>Key Features:</strong>
-                                    <ul>
-                                      {product.features.split(', ').map((feature, featureIndex) => (
-                                        <li key={featureIndex}>{feature.trim()}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                                
-                                <div className="product-buttons-back">
-                                  <button className="btn-quote-back" onClick={(e) => { e.stopPropagation(); }}>
-                                    Get a Quote
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            ))
-          ) : (
-            // Show products for selected category
+  const handleShowMore = () => {
+    setPrevProductsToShow(productsToShow)
+    setProductsToShow(prev => prev + 6)
+  }
+
+  const visibleProducts = displayProducts.slice(0, productsToShow)
+  const hasMoreProducts = displayProducts.length > productsToShow
+
+  const openModal = (product: Product) => {
+    setSelectedProduct(product)
+    setModalImageIndex(0)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setSelectedProduct(null)
+    document.body.style.overflow = 'auto'
+  }
+
+  const nextModalImage = () => {
+    if (selectedProduct) {
+      setModalImageIndex((prev) => (prev + 1) % selectedProduct.images.length)
+    }
+  }
+
+  const prevModalImage = () => {
+    if (selectedProduct) {
+      setModalImageIndex((prev) => (prev - 1 + selectedProduct.images.length) % selectedProduct.images.length)
+    }
+  }
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedProduct) {
+        closeModal()
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [selectedProduct])
+
+  return (
+    <>
+      <section id="products" className={`section products-section ${selectedProduct ? 'modal-open' : ''}`}>
+        <div className="container">
+          <h2 className="section-title">Our Products</h2>
+          <p className="section-subtitle">Comprehensive solutions for all your coding and packing needs</p>
+          
+          {/* Tabs */}
+          <div className="tabs-container">
+            <button
+              className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveTab('all')}
+            >
+              <span className="tab-icon">📋</span>
+              <span className="tab-text">All Products</span>
+            </button>
+            {productCategories.map((category, index) => (
+              <button
+                key={index}
+                className={`tab-button ${activeTab === category.category ? 'active' : ''}`}
+                onClick={() => setActiveTab(category.category)}
+              >
+                <span className="tab-icon">{category.icon}</span>
+                <span className="tab-text">{category.shortName || category.category}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Products Display */}
+          <div className="products-content">
             <div className="products-grid">
-              {displayProducts.map((product, productIndex) => {
-                const productKey = `category-${productIndex}`
-                const isFlipped = flippedCards[productKey] || false
-                const currentImageIndex = imageIndices[productKey] || 0
+              {visibleProducts.map((product, productIndex) => {
                 const productImages = product.images || ['/images/solution.jpg']
-                const hasMultipleImages = productImages.length > 1
+                // Only animate if products were just added (not on initial render)
+                const isNewlyVisible = prevProductsToShow < productsToShow && productIndex >= prevProductsToShow && productIndex < productsToShow
                 
                 return (
-                  <div
-                    key={productIndex}
-                    className="flip-card-wrapper"
-                    onMouseLeave={() => setFlippedCards(prev => ({ ...prev, [productKey]: false }))}
+                  <div 
+                    key={`${productIndex}-${productsToShow}`} 
+                    className={`product-card ${isNewlyVisible ? 'product-card-enter' : ''}`}
+                    style={{ animationDelay: isNewlyVisible ? `${(productIndex - prevProductsToShow) * 0.1}s` : '0s' }}
                   >
-                    <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
-                      <div className="flip-card-inner">
-                        {/* Front Side */}
-                        <div className="flip-card-front card">
-                          {/* Image Slider */}
-                          <div className="product-image-container">
-                            <img
-                              src={productImages[currentImageIndex]}
-                              alt={product.name}
-                              className="product-image"
-                            />
-                            {hasMultipleImages && (
-                              <>
-                                <button
-                                  className="image-nav-btn prev-btn"
-                                  onClick={(e) => prevImage(productKey, productImages.length, e)}
-                                >
-                                  ‹
-                                </button>
-                                <button
-                                  className="image-nav-btn next-btn"
-                                  onClick={(e) => nextImage(productKey, productImages.length, e)}
-                                >
-                                  ›
-                                </button>
-                                <div className="image-indicator">
-                                  {currentImageIndex + 1} / {productImages.length}
-                                </div>
-                              </>
-                            )}
-                          </div>
-                          
-                            <div className="product-card-content">
-                            <h4 className="product-name">{product.name}</h4>
-                            <p className="product-description">{product.description}</p>
-                            
-                            <div className="product-buttons">
-                              <div className="buttons-row">
-                                <button
-                                  className="btn-learn-more"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    toggleCard(productKey)
-                                  }}
-                                >
-                                  Learn More
-                                </button>
-                                <button className="btn-download" onClick={(e) => { e.stopPropagation(); }}>
-                                  📥
-                                </button>
-                              </div>
-                              <button className="btn-quote" onClick={(e) => { e.stopPropagation(); }}>
-                                Get a Quote
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Back Side */}
-                        <div className="flip-card-back card">
-                          <div className="product-details">
-                            <h4 className="product-name">{product.name}</h4>
-                            
-                            <p className="product-description-back">{product.description}</p>
-                            
-                            {/* Key Features Section */}
-                            {product.features && (
-                              <div className="product-features">
-                                <strong>Key Features:</strong>
-                                <ul>
-                                  {product.features.split(', ').map((feature, featureIndex) => (
-                                    <li key={featureIndex}>{feature.trim()}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                            
-                            <div className="product-buttons-back">
-                              <button className="btn-quote-back" onClick={(e) => { e.stopPropagation(); }}>
-                                Get a Quote
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                    <div className="product-image-container">
+                      <img
+                        src={productImages[0]}
+                        alt={product.name}
+                        className="product-image"
+                      />
+                    </div>
+                    
+                    <div className="product-card-content">
+                      <h4 className="product-name">{product.name}</h4>
+                      
+                      <div className="product-buttons">
+                        <button
+                          className="btn-learn-more"
+                          onClick={() => openModal(product)}
+                        >
+                          Learn More
+                        </button>
                       </div>
                     </div>
                   </div>
                 )
               })}
             </div>
-          )}
+            
+            {hasMoreProducts && (
+              <div className="show-more-container">
+                <button className="btn-show-more" onClick={handleShowMore}>
+                  <span>Show More</span>
+                  <span className="show-more-icon">↓</span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Modal */}
+      {selectedProduct && (
+        <div className="product-modal-overlay" onClick={closeModal}>
+          <div className="product-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={closeModal}>×</button>
+            
+            <div className="modal-content">
+              {/* Image Gallery */}
+              <div className="modal-image-section">
+                <div className="modal-main-image-container">
+                  <img
+                    src={selectedProduct.images[modalImageIndex]}
+                    alt={selectedProduct.name}
+                    className="modal-main-image"
+                  />
+                  {selectedProduct.images.length > 1 && (
+                    <>
+                      <button className="modal-nav-btn prev-btn" onClick={prevModalImage}>
+                        ‹
+                      </button>
+                      <button className="modal-nav-btn next-btn" onClick={nextModalImage}>
+                        ›
+                      </button>
+                      <div className="modal-image-indicator">
+                        {modalImageIndex + 1} / {selectedProduct.images.length}
+                      </div>
+                    </>
+                  )}
+                </div>
+                
+                {selectedProduct.images.length > 1 && (
+                  <div className="modal-thumbnails">
+                    {selectedProduct.images.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`${selectedProduct.name} ${index + 1}`}
+                        className={`modal-thumbnail ${index === modalImageIndex ? 'active' : ''}`}
+                        onClick={() => setModalImageIndex(index)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Product Info */}
+              <div className="modal-info-section">
+                <h2 className="modal-product-name">{selectedProduct.name}</h2>
+                <p className="modal-description">{selectedProduct.description}</p>
+                
+                {selectedProduct.technology && (
+                  <div className="modal-info-item">
+                    <strong>Technology:</strong>
+                    <span>{selectedProduct.technology}</span>
+                  </div>
+                )}
+                
+                {selectedProduct.printSpecs && (
+                  <div className="modal-info-item">
+                    <strong>Print Specifications:</strong>
+                    <span>{selectedProduct.printSpecs}</span>
+                  </div>
+                )}
+                
+                {selectedProduct.type && (
+                  <div className="modal-info-item">
+                    <strong>Type:</strong>
+                    <span>{selectedProduct.type}</span>
+                  </div>
+                )}
+                
+                {selectedProduct.targetProduct && (
+                  <div className="modal-info-item">
+                    <strong>Target Product:</strong>
+                    <span>{selectedProduct.targetProduct}</span>
+                  </div>
+                )}
+                
+                {selectedProduct.application && (
+                  <div className="modal-info-item">
+                    <strong>Application:</strong>
+                    <span>{selectedProduct.application}</span>
+                  </div>
+                )}
+                
+                {selectedProduct.features && (
+                  <div className="modal-features">
+                    <strong>Key Features:</strong>
+                    <ul>
+                      {selectedProduct.features.split(', ').map((feature, featureIndex) => (
+                        <li key={featureIndex}>{feature.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                <div className="modal-actions">
+                  <div className="modal-buttons-row">
+                    <button className="modal-download-btn" onClick={(e) => { e.stopPropagation(); }}>
+                      📥 Download
+                    </button>
+                    <button className="modal-quote-btn" onClick={(e) => { e.stopPropagation(); }}>
+                      Get a Quote
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style jsx>{`
         .products-section {
           background: #f8f8f8;
+          transition: filter 0.3s ease;
+        }
+        
+        .products-section.modal-open {
+          filter: blur(5px);
+          pointer-events: none;
         }
         
         .tabs-container {
@@ -598,109 +583,38 @@ export default function Products() {
           gap: 2rem;
         }
         
-        .flip-card-wrapper {
-          perspective: 1000px;
-          height: 700px;
-        }
-        
-        .flip-card {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-        
-        .flip-card-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          transition: transform 0.6s;
-          transform-style: preserve-3d;
-        }
-        
-        .flip-card.flipped .flip-card-inner {
-          transform: rotateY(180deg);
-        }
-        
-        .flip-card-front,
-        .flip-card-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          display: flex;
-          flex-direction: column;
+        .product-card {
+          background: white;
           border-radius: 8px;
           overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          height: 500px;
         }
         
-        .flip-card-back {
-          transform: rotateY(180deg);
-          overflow-y: auto;
+        .product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
         
         .product-image-container {
           position: relative;
           width: 100%;
-          aspect-ratio: 3 / 4;
+          height: 300px;
           overflow: hidden;
-          background: #f0f0f0;
-          min-height: 350px;
+          background: white;
         }
         
         .product-image {
           width: 100%;
           height: 100%;
-          object-fit: cover;
-        }
-        
-        .image-nav-btn {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background: rgba(235, 28, 36, 0.8);
-          color: white;
-          border: none;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          cursor: pointer;
-          font-size: 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-          z-index: 10;
-        }
-        
-        .image-nav-btn:hover {
-          background: var(--primary-red);
-          transform: translateY(-50%) scale(1.1);
-        }
-        
-        .prev-btn {
-          left: 10px;
-        }
-        
-        .next-btn {
-          right: 10px;
-        }
-        
-        .image-indicator {
-          position: absolute;
-          bottom: 10px;
-          right: 10px;
-          background: rgba(0, 0, 0, 0.7);
-          color: white;
-          padding: 0.25rem 0.75rem;
-          border-radius: 15px;
-          font-size: 0.85rem;
+          object-fit: contain;
         }
         
         .product-card-content {
-          padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+          padding: 1.5rem;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -710,61 +624,27 @@ export default function Products() {
           font-size: 1.4rem;
           font-weight: 700;
           color: var(--primary-red);
-          margin-bottom: 0.75rem;
-        }
-        
-        .product-description {
-          color: var(--subheading-gray);
-          font-size: 0.95rem;
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-          flex: 1;
+          margin-bottom: 1rem;
         }
         
         .product-buttons {
           display: flex;
           flex-direction: column;
           gap: 0.75rem;
-          position: relative;
+          margin-top: auto;
         }
         
-        .buttons-row {
-          display: flex;
-          gap: 0.5rem;
-          position: relative;
-        }
-        
-        .product-buttons button {
+        .btn-learn-more {
+          width: 100%;
           padding: 0.75rem 1rem;
+          background: var(--primary-red);
+          color: white;
           border: none;
+          border-radius: 6px;
           font-size: 0.9rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
-          position: relative;
-        }
-        
-        .btn-download {
-          background: #f0f0f0;
-          color: var(--text-black);
-          border-radius: 6px;
-          padding: 0.75rem;
-          min-width: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.2rem;
-        }
-        
-        .btn-download:hover {
-          background: #e0e0e0;
-        }
-        
-        .btn-learn-more {
-          background: var(--primary-red);
-          color: white;
-          border-radius: 6px;
-          flex: 1;
         }
         
         .btn-learn-more:hover {
@@ -773,105 +653,304 @@ export default function Products() {
           box-shadow: 0 4px 8px rgba(235, 28, 36, 0.3);
         }
         
-        .btn-quote {
-          background: transparent;
-          color: var(--primary-red);
-          border: 2px solid var(--primary-red);
-          border-radius: 6px;
-          margin-top: 0;
-          box-shadow: 0 0 0 1px rgba(235, 28, 36, 0.1);
+        /* Product Card Animation */
+        .product-card {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
-        .btn-quote:hover {
-          background: var(--primary-red);
-          color: white;
-          border-color: var(--primary-red);
+        .product-card-enter {
+          animation: productCardEnter 0.6s ease forwards;
         }
         
-        .product-details {
-          padding: 1.5rem;
-          text-align: left;
+        @keyframes productCardEnter {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        /* Show More Button */
+        .show-more-container {
           display: flex;
-          flex-direction: column;
-          height: 100%;
+          justify-content: center;
+          margin-top: 3rem;
+          padding: 2rem 0;
         }
         
-        .product-description-back {
-          color: var(--subheading-gray);
-          font-size: 0.95rem;
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-        }
-        
-        .product-buttons-back {
-          margin-top: auto;
-          padding-top: 1.5rem;
-        }
-        
-        .btn-quote-back {
-          width: 100%;
-          padding: 0.75rem 1rem;
+        .btn-show-more {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 1rem 2.5rem;
           background: var(--primary-red);
           color: white;
           border: 2px solid var(--primary-red);
-          border-radius: 6px;
-          font-size: 0.9rem;
+          border-radius: 8px;
+          font-size: 1rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
         }
         
-        .btn-quote-back:hover {
+        .btn-show-more::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .btn-show-more:hover::before {
+          width: 300px;
+          height: 300px;
+        }
+        
+        .btn-show-more:hover {
           background: #c41e28;
           border-color: #c41e28;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(235, 28, 36, 0.3);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 16px rgba(235, 28, 36, 0.4);
         }
         
-        .product-spec-section {
-          margin-bottom: 1rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        .btn-show-more:active {
+          transform: translateY(-1px);
         }
         
-        .product-spec-section:last-of-type {
-          border-bottom: none;
+        .btn-show-more span {
+          position: relative;
+          z-index: 1;
         }
         
-        .spec-label {
-          display: block;
-          color: var(--text-black);
+        .show-more-icon {
+          font-size: 1.2rem;
+          transition: transform 0.3s ease;
+          display: inline-block;
+        }
+        
+        .btn-show-more:hover .show-more-icon {
+          transform: translateY(5px);
+        }
+        
+        /* Modal Styles */
+        .product-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          padding: 2rem;
+          overflow-y: auto;
+        }
+        
+        .product-modal {
+          background: white;
+          border-radius: 12px;
+          max-width: 1200px;
+          width: 100%;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-close-btn {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          font-size: 2rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+          transition: all 0.3s ease;
+        }
+        
+        .modal-close-btn:hover {
+          background: var(--primary-red);
+          transform: rotate(90deg);
+        }
+        
+        .modal-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          padding: 2rem;
+        }
+        
+        .modal-image-section {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .modal-main-image-container {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          background: white;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        
+        .modal-main-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        
+        .modal-nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(235, 28, 36, 0.8);
+          color: white;
+          border: none;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+          font-size: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          z-index: 10;
+        }
+        
+        .modal-nav-btn:hover {
+          background: var(--primary-red);
+          transform: translateY(-50%) scale(1.1);
+        }
+        
+        .modal-nav-btn.prev-btn {
+          left: 15px;
+        }
+        
+        .modal-nav-btn.next-btn {
+          right: 15px;
+        }
+        
+        .modal-image-indicator {
+          position: absolute;
+          bottom: 15px;
+          right: 15px;
+          background: rgba(0, 0, 0, 0.7);
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
           font-size: 0.9rem;
-          font-weight: 600;
-          margin-bottom: 0.4rem;
         }
         
-        .spec-value {
-          display: block;
+        .modal-thumbnails {
+          display: flex;
+          gap: 0.5rem;
+          overflow-x: auto;
+          padding: 0.5rem 0;
+        }
+        
+        .modal-thumbnail {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 6px;
+          cursor: pointer;
+          border: 3px solid transparent;
+          transition: all 0.3s ease;
+          flex-shrink: 0;
+        }
+        
+        .modal-thumbnail:hover {
+          border-color: var(--primary-red);
+          transform: scale(1.05);
+        }
+        
+        .modal-thumbnail.active {
+          border-color: var(--primary-red);
+          box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.3);
+        }
+        
+        .modal-info-section {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        
+        .modal-product-name {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--primary-red);
+          margin: 0;
+        }
+        
+        .modal-description {
+          color: var(--subheading-gray);
+          font-size: 1rem;
+          line-height: 1.6;
+          margin: 0;
+        }
+        
+        .modal-info-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .modal-info-item strong {
+          color: var(--text-black);
+          font-size: 0.95rem;
+          font-weight: 600;
+        }
+        
+        .modal-info-item span {
           color: var(--subheading-gray);
           font-size: 0.95rem;
           line-height: 1.6;
         }
         
-        .product-features {
+        .modal-features {
           color: var(--text-black);
-          margin-top: 1rem;
         }
         
-        .product-features strong {
+        .modal-features strong {
           display: block;
           color: var(--text-black);
           margin-bottom: 0.75rem;
           font-size: 1rem;
+          font-weight: 600;
         }
         
-        .product-features ul {
+        .modal-features ul {
           list-style: none;
           padding: 0;
           margin: 0;
         }
         
-        .product-features li {
+        .modal-features li {
           color: var(--subheading-gray);
           line-height: 1.8;
           padding-left: 1.5rem;
@@ -879,13 +958,66 @@ export default function Products() {
           margin-bottom: 0.5rem;
         }
         
-        .product-features li::before {
+        .modal-features li::before {
           content: '•';
           position: absolute;
           left: 0;
           color: var(--primary-red);
           font-weight: 700;
           font-size: 1.2rem;
+        }
+        
+        .modal-actions {
+          margin-top: auto;
+          padding-top: 1rem;
+        }
+        
+        .modal-buttons-row {
+          display: flex;
+          gap: 1rem;
+        }
+        
+        .modal-download-btn {
+          flex: 1;
+          padding: 1rem 2rem;
+          background: #f0f0f0;
+          color: var(--text-black);
+          border: 2px solid #f0f0f0;
+          border-radius: 6px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+        
+        .modal-download-btn:hover {
+          background: #e0e0e0;
+          border-color: #e0e0e0;
+          transform: translateY(-2px);
+        }
+        
+        .modal-quote-btn {
+          flex: 1;
+          padding: 1rem 2rem;
+          background: var(--primary-red);
+          color: white;
+          border: 2px solid var(--primary-red);
+          border-radius: 6px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .modal-quote-btn:hover {
+          background: #c41e28;
+          border-color: #c41e28;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(235, 28, 36, 0.3);
         }
         
         @media (max-width: 968px) {
@@ -904,6 +1036,10 @@ export default function Products() {
           .tab-button {
             padding: 0.6rem 1.2rem;
           }
+          
+          .modal-content {
+            grid-template-columns: 1fr;
+          }
         }
         
         @media (max-width: 768px) {
@@ -911,12 +1047,12 @@ export default function Products() {
             grid-template-columns: 1fr;
           }
           
-          .flip-card-wrapper {
-            height: 650px;
+          .product-card {
+            height: auto;
           }
           
           .product-image-container {
-            aspect-ratio: 3 / 4;
+            height: 250px;
           }
           
           .tabs-container {
@@ -961,13 +1097,48 @@ export default function Products() {
             font-size: 1.2rem;
           }
           
-          .product-buttons button {
+          .btn-learn-more {
             padding: 0.6rem 0.8rem;
             font-size: 0.85rem;
           }
+          
+          .btn-show-more {
+            padding: 0.875rem 2rem;
+            font-size: 0.9rem;
+          }
+          
+          .show-more-container {
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+          }
+          
+          .product-modal-overlay {
+            padding: 1rem;
+          }
+          
+          .product-modal {
+            max-height: 95vh;
+          }
+          
+          .modal-content {
+            padding: 1.5rem;
+          }
+          
+          .modal-product-name {
+            font-size: 1.5rem;
+          }
+          
+          .modal-buttons-row {
+            flex-direction: column;
+            gap: 0.75rem;
+          }
+          
+          .modal-download-btn,
+          .modal-quote-btn {
+            width: 100%;
+          }
         }
       `}</style>
-    </section>
+    </>
   )
 }
-
