@@ -590,10 +590,11 @@ export default function Products() {
         
         .product-card {
           background: white;
+          border: 2px solid rgba(235, 28, 36, 0.2);
           border-radius: 8px;
           overflow: hidden;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           display: flex;
           flex-direction: column;
           height: 500px;
@@ -602,6 +603,7 @@ export default function Products() {
         .product-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+          border-color: rgba(235, 28, 36, 0.4);
         }
         
         .product-image-container {

@@ -53,23 +53,35 @@ export default function CTA() {
         }
         
         .cta-section .btn {
-          background: white;
-          color: var(--primary-red);
+          background: white !important;
+          background-color: white !important;
+          color: var(--primary-red) !important;
+          border: 2px solid white !important;
+          border-radius: 8px !important;
+          clip-path: none !important;
         }
         
         .cta-section .btn:hover {
-          background: #f0f0f0;
+          background: #f0f0f0 !important;
+          background-color: #f0f0f0 !important;
+          color: var(--primary-red) !important;
+          border-color: #f0f0f0 !important;
         }
         
         .cta-section .btn-outline {
-          background: transparent;
-          border: 2px solid white;
-          color: white;
+          background: transparent !important;
+          background-color: transparent !important;
+          border: 2px solid white !important;
+          color: white !important;
+          border-radius: 8px !important;
+          clip-path: none !important;
         }
         
         .cta-section .btn-outline:hover {
-          background: white;
-          color: var(--primary-red);
+          background: white !important;
+          background-color: white !important;
+          color: var(--primary-red) !important;
+          border-color: white !important;
         }
         
         @media (max-width: 768px) {

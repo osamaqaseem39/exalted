@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import StatsBanner from '@/components/StatsBanner'
 import AboutUs from '@/components/AboutUs'
 import Brands from '@/components/Brands'
 import Products from '@/components/Products'
@@ -16,6 +17,7 @@ export default function Home() {
       <Preloader />
       <Navbar />
       <Hero />
+      <StatsBanner />
       <Products />
       <AboutUs />
       <Brands />

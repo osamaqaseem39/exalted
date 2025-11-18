@@ -194,7 +194,7 @@ export default function ContactUs() {
         .form-group textarea {
           width: 100%;
           padding: 1rem;
-          border: 2px solid #e0e0e0;
+          border: 2px solid rgba(235, 28, 36, 0.2);
           background: white;
           font-family: 'Poppins', sans-serif;
           font-size: 1rem;

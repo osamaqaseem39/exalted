@@ -63,6 +63,18 @@ export default function WhyChooseUs() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          background: white;
+          padding: 2rem;
+          border: 2px solid rgba(235, 28, 36, 0.2);
+          border-radius: 8px;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border-color: rgba(235, 28, 36, 0.4);
         }
         
         .feature-icon {

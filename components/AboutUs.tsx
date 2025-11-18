@@ -37,22 +37,6 @@ export default function AboutUs() {
               </p>
             </div>
             
-            {/* Statistics */}
-            <div className="about-stats">
-              <div className="stat-card">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">Projects Completed</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">200+</div>
-                <div className="stat-label">Happy Clients</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">10+</div>
-                <div className="stat-label">Years Experience</div>
-              </div>
-            </div>
-            
             {/* Mission Vision Goals */}
             <div className="mvg-grid">
               <div className="mvg-card">
@@ -125,36 +109,6 @@ export default function AboutUs() {
           font-weight: 600;
         }
         
-        .about-stats {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          margin-bottom: 3rem;
-          padding-top: 3rem;
-          border-top: 2px solid rgba(235, 28, 36, 0.1);
-        }
-        
-        .stat-card {
-          text-align: center;
-          padding: 2rem 1.5rem;
-          background: rgba(235, 28, 36, 0.05);
-          border: 1px solid rgba(235, 28, 36, 0.1);
-          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-        }
-        
-        .stat-number {
-          font-size: 3.5rem;
-          font-weight: 700;
-          color: var(--primary-red);
-          margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-          font-size: 1rem;
-          color: var(--text-black);
-          font-weight: 600;
-        }
-        
         .mvg-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -220,11 +174,6 @@ export default function AboutUs() {
             padding: 2rem;
           }
           
-          .about-stats {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-          }
-          
           .mvg-grid {
             grid-template-columns: 1fr;
             gap: 2rem;
@@ -238,11 +187,6 @@ export default function AboutUs() {
           
           .about-text-content {
             margin-bottom: 2rem;
-          }
-          
-          .about-stats {
-            margin-bottom: 2rem;
-            padding-top: 2rem;
           }
           
           .mvg-grid {
@@ -266,14 +210,6 @@ export default function AboutUs() {
           
           .mvg-content {
             font-size: 0.9rem;
-          }
-          
-          .stat-number {
-            font-size: 2.5rem;
-          }
-          
-          .stat-card {
-            padding: 1.5rem 1rem;
           }
         }
       `}</style>
