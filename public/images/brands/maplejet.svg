@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 48" fill="none" role="img" aria-label="MapleJet">
+  <path d="M8 14c12-4 24-2 34 4" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  <path d="M6 22c14-2 26 0 36 8" stroke="#DC2626" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 30c10-2 22 0 32 6" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  <rect x="8" y="12" width="4" height="4" fill="#2563EB"/>
+  <rect x="38" y="18" width="4" height="4" fill="#DC2626"/>
+  <rect x="40" y="34" width="4" height="4" fill="#2563EB"/>
+  <text x="0" y="46" fill="#1D4ED8" font-family="Arial, sans-serif" font-size="18" font-weight="600">MapleJet</text>
+</svg>

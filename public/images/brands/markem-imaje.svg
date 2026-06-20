@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" role="img" aria-label="Markem-Imaje">
+  <circle cx="22" cy="24" r="18" fill="#5B2D8B"/>
+  <rect x="15" y="12" width="3.5" height="24" rx="1" fill="#fff"/>
+  <rect x="20.5" y="12" width="3.5" height="24" rx="1" fill="#fff"/>
+  <rect x="26" y="12" width="3.5" height="24" rx="1" fill="#fff"/>
+  <text x="48" y="22" fill="#6B7280" font-family="Arial, sans-serif" font-size="15" font-weight="500">markem-imaje</text>
+  <text x="48" y="36" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="8.5">a DOVER company</text>
+</svg>

@@ -1,26 +1,257 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  span,
+  a,
+  label,
+  button,
+  input,
+  textarea,
+  select,
+  td,
+  th,
+  figcaption,
+  small,
+  strong,
+  em,
+  div {
+    font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+    font-weight: 400;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #000000;
   }
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --brand: #e31e24;
+  --brand-dark: #8b1010;
+  --brand-light: #fef2f2;
+  --brand-border: #fecaca;
+  --brand-border-light: #fee2e2;
+}
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-brand: #e31e24;
+  --color-brand-dark: #8b1010;
+  --color-brand-light: #fef2f2;
+  --color-brand-border: #fecaca;
+  --color-brand-border-light: #fee2e2;
+  --font-sans: var(--font-poppins);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #fecaca;
+  color: #000000;
+}
+
+/* Product filter & grid animations */
+@keyframes product-filter-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes product-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes product-count-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.product-filter-btn:active:not([aria-pressed="true"]) {
+  transform: scale(0.95);
+}
+
+.product-filter-ripple {
+  border-radius: 9999px;
+  animation: product-filter-ripple 0.55s ease-out;
+}
+
+.product-grid-animate .product-card-item {
+  animation: product-card-in 0.5s ease backwards;
+}
+
+.product-count-pop {
+  display: inline-block;
+  animation: product-count-pop 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-filter-ripple,
+  .product-grid-animate .product-card-item,
+  .product-count-pop {
+    animation: none;
+  }
+}
+
+.offices-map-scroller {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.offices-map-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pharma Track & Trace — homepage animations */
+.pharma-track-home .pharma-step,
+.pharma-track-home .pharma-level-card,
+.pharma-track-home .pharma-cta {
+  opacity: 1;
+  transform: translateY(10px);
+  transition:
+    transform 0.55s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pharma-track-home .pharma-step {
+  transform: translateX(-12px);
+}
+
+.pharma-track-home .pharma-level-card {
+  transform: translateX(12px);
+}
+
+.pharma-track-home.is-active .pharma-step,
+.pharma-track-home.is-active .pharma-level-card,
+.pharma-track-home.is-active .pharma-cta {
+  transform: translate(0);
+}
+
+.pharma-track-home .pharma-flow-line {
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 1.2s ease 0.15s;
+}
+
+.pharma-track-home.is-active .pharma-flow-line {
+  transform: scaleY(1);
+}
+
+.pharma-track-home .pharma-flow-pulse {
+  opacity: 0;
+}
+
+.pharma-track-home.is-active .pharma-flow-pulse {
+  animation: pharma-pulse-travel 3.5s ease-in-out 0.8s infinite;
+}
+
+.pharma-track-home .pharma-level-connector {
+  transform-origin: top;
+  transform: translateX(-50%) scaleY(0);
+  transition: transform 1s ease 0.4s;
+}
+
+.pharma-track-home.is-active .pharma-level-connector {
+  transform: translateX(-50%) scaleY(1);
+}
+
+.pharma-track-home.is-active .pharma-level-arrow {
+  animation: pharma-arrow-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes pharma-pulse-travel {
+  0% {
+    top: 1.5rem;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 2.5rem);
+    opacity: 0;
+  }
+}
+
+@keyframes pharma-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pharma-track-home .pharma-step,
+  .pharma-track-home .pharma-level-card,
+  .pharma-track-home .pharma-cta,
+  .pharma-track-home .pharma-flow-line,
+  .pharma-track-home .pharma-level-connector {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pharma-track-home .pharma-flow-pulse,
+  .pharma-track-home .pharma-level-arrow {
+    animation: none;
+  }
 }
