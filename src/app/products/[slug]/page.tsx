@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/layout/PageShell";
 import ProductDetailClient from "@/components/products/ProductDetailClient";
 import { getProductBySlug, getRelatedProducts, products } from "@/data/products";
 
@@ -30,9 +30,8 @@ export default async function ProductDetailPage({ params }: Props) {
   const related = getRelatedProducts(slug, 3);
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <PageShell>
       <ProductDetailClient product={product} related={related} />
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

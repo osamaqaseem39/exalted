@@ -8,6 +8,7 @@ export type Solution = {
   features: string[];
   applications: string[];
   industries: string[];
+  image: string;
   productCategory?: string;
   productCategoryLabel?: string;
   relatedProductSlugs?: string[];
@@ -35,6 +36,7 @@ export const solutions: Solution[] = [
       "Batch recall and traceability queries",
     ],
     industries: ["Pharma & Life Sciences", "Packaging & FMCG"],
+    image: "/images/hero-pharma-serialization.png",
     productCategoryLabel: "Pharma Track & Trace",
     relatedProductSlugs: ["barcode-printer-station"],
   },
@@ -59,6 +61,7 @@ export const solutions: Solution[] = [
       "Barcode readability checks",
     ],
     industries: ["Pharma & Life Sciences", "Food & Beverage", "Personal Care & Cosmetics"],
+    image: "/images/machine-vision-bottle.jpeg",
     productCategory: "Inspection",
     productCategoryLabel: "Inspection Products",
     relatedProductSlugs: ["machine-vision-bottle", "machine-vision-blister"],
@@ -84,6 +87,7 @@ export const solutions: Solution[] = [
       "Mass and component verification",
     ],
     industries: ["Food & Beverage", "Pharma & Life Sciences", "Packaging & FMCG"],
+    image: "/images/xavis-xray-system.jpeg",
     productCategory: "Inspection",
     productCategoryLabel: "X-Ray Products",
     relatedProductSlugs: ["x-ray-inspection-system"],
@@ -109,6 +113,7 @@ export const solutions: Solution[] = [
       "Final pack verification before dispatch",
     ],
     industries: ["Pharma & Life Sciences", "Food & Beverage", "Industrial Manufacturing"],
+    image: "/images/pharma-metal-detector.jpeg",
     productCategory: "Detection",
     productCategoryLabel: "Metal Detection Products",
     relatedProductSlugs: [
@@ -138,6 +143,7 @@ export const solutions: Solution[] = [
       "Regulatory weight compliance",
     ],
     industries: ["Food & Beverage", "Pharma & Life Sciences", "Packaging & FMCG"],
+    image: "/images/check-weigher.jpeg",
     productCategory: "Weighing",
     productCategoryLabel: "Check Weigher Products",
     relatedProductSlugs: ["automatic-check-weigher"],
@@ -163,6 +169,7 @@ export const solutions: Solution[] = [
       "High-speed beverage and food coding",
     ],
     industries: ["Pharma & Life Sciences", "Food & Beverage", "Industrial Manufacturing", "Tobacco & Specialty"],
+    image: "/images/laser-printing-system.jpeg",
     productCategory: "Printing",
     productCategoryLabel: "Printing Products",
     relatedProductSlugs: ["famjet-pleyon-tij", "famjet-m5-tij", "laser-printing-systems"],
@@ -188,6 +195,7 @@ export const solutions: Solution[] = [
       "Pharma bottle and vial labeling",
     ],
     industries: ["Pharma & Life Sciences", "Food & Beverage", "Personal Care & Cosmetics"],
+    image: "/images/labeling-machine.jpeg",
     productCategory: "Labelling",
     productCategoryLabel: "Labeling Products",
     relatedProductSlugs: ["automatic-labeling-machine"],
@@ -213,6 +221,7 @@ export const solutions: Solution[] = [
       "Custom compliance reporting",
     ],
     industries: ["Pharma & Life Sciences", "Industrial Manufacturing", "Packaging & FMCG"],
+    image: "/images/barcode-printer-station.jpeg",
     productCategoryLabel: "Software & Integration",
   },
 ];
@@ -242,6 +251,22 @@ export function getRelatedSolutions(slug: string, limit = 3) {
   const current = getSolutionBySlug(slug);
   if (!current) return [];
   return solutions.filter((s) => s.slug !== slug && s.industries.some((i) => current.industries.includes(i))).slice(0, limit);
+}
+
+export function getProductsHrefForSolution(solution: Solution) {
+  if (solution.relatedProductSlugs?.length) {
+    const first = products.find((p) => p.slug === solution.relatedProductSlugs![0]);
+    if (first) {
+      return `/products?category=${encodeURIComponent(first.tag)}&from=solution`;
+    }
+  }
+  if (solution.productCategory) {
+    return `/products?category=${encodeURIComponent(solution.productCategory)}&from=solution`;
+  }
+  if (solution.slug === "track-trace") {
+    return "/company#pharma-track-trace";
+  }
+  return "/products";
 }
 
 /** Flat list for cards — same data as homepage & services page */

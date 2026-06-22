@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/layout/PageShell";
 import HeroSlider from "@/components/HeroSlider";
 import HomeProductsSection from "@/components/HomeProductsSection";
 import IndustriesSection from "@/components/IndustriesSection";
-import PharmaTrackTraceHome from "@/components/PharmaTrackTraceHome";
-import PrincipalsSection from "@/components/PrincipalsSection";
+import BrandsSection from "@/components/BrandsSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import TechnologiesSection from "@/components/TechnologiesSection";
 
@@ -85,11 +84,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-black">
-      <main className="overflow-hidden">
+    <PageShell>
+      <main className="flex-1 overflow-hidden">
         <HeroSlider />
-
-        <PharmaTrackTraceHome />
 
         <SolutionsSection />
 
@@ -97,14 +94,14 @@ export default function Home() {
 
         <TechnologiesSection />
 
-        <PrincipalsSection id="principals-section" reveal />
+        <BrandsSection id="brands-section" reveal variant="section" />
 
         <IndustriesSection />
 
         <section
           id="contact-section"
           data-reveal
-          className="mx-auto mt-12 max-w-5xl translate-y-8 px-6 opacity-0 transition-all duration-700"
+          className="mx-auto max-w-6xl translate-y-8 px-6 pb-16 opacity-0 transition-all duration-700 md:pb-20"
         >
           <div className="overflow-hidden rounded-2xl border border-[#fee2e2] bg-white p-5 shadow-sm md:p-6">
             <div className="mb-5 border-b border-[#fee2e2] pb-4">
@@ -125,7 +122,7 @@ export default function Home() {
                       value={formData.name}
                       onChange={(e) => handleFormChange("name", e.target.value)}
                       placeholder="Your name"
-                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                       required
                     />
                   </label>
@@ -136,7 +133,7 @@ export default function Home() {
                       value={formData.email}
                       onChange={(e) => handleFormChange("email", e.target.value)}
                       placeholder="you@company.com"
-                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                       required
                     />
                   </label>
@@ -147,7 +144,7 @@ export default function Home() {
                       value={formData.phone}
                       onChange={(e) => handleFormChange("phone", e.target.value)}
                       placeholder="+92 300 0000000"
-                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                     />
                   </label>
                   <label className="block">
@@ -157,7 +154,7 @@ export default function Home() {
                       value={formData.company}
                       onChange={(e) => handleFormChange("company", e.target.value)}
                       placeholder="Company name"
-                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                     />
                   </label>
                   <label className="block sm:col-span-2">
@@ -165,7 +162,7 @@ export default function Home() {
                     <select
                       value={formData.product}
                       onChange={(e) => handleFormChange("product", e.target.value)}
-                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                     >
                       <option value="">Select category</option>
                       <option value="Serialization">Serialization & Track & Trace</option>
@@ -184,7 +181,7 @@ export default function Home() {
                       onChange={(e) => handleFormChange("message", e.target.value)}
                       placeholder="Describe your requirements..."
                       rows={3}
-                      className="w-full resize-none rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#e31e24]"
+                      className="w-full resize-none rounded-lg border border-[#fee2e2] bg-white px-3 py-2 text-sm text-black outline-none focus:border-[#8b1010]"
                       required
                     />
                   </label>
@@ -199,7 +196,7 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="mt-4 rounded-lg bg-[#e31e24] px-5 py-2 text-sm font-normal text-white transition hover:bg-[#c41a20]"
+                  className="mt-4 rounded-lg bg-[#8b1010] px-5 py-2 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
                 >
                   Send Message
                 </button>
@@ -241,7 +238,7 @@ export default function Home() {
                     href="https://wa.me/923028426797"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 rounded-lg bg-[#e31e24] py-2 text-center text-xs font-normal text-white transition hover:bg-[#c41a20]"
+                    className="flex-1 rounded-lg bg-[#8b1010] py-2 text-center text-xs font-normal text-white transition hover:bg-[#6e0d0d]"
                   >
                     WhatsApp
                   </a>
@@ -251,8 +248,7 @@ export default function Home() {
           </div>
         </section>
 
-        <Footer />
       </main>
-    </div>
+    </PageShell>
   );
 }

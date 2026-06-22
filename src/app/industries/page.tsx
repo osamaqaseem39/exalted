@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import PageShell from "@/components/layout/PageShell";
 import { industries } from "@/data/industries";
 
 export const metadata: Metadata = {
@@ -11,25 +12,20 @@ export const metadata: Metadata = {
 
 export default function IndustriesIndexPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <section className="border-b border-[#fee2e2] bg-[#f4f6f8] py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <Link href="/" className="text-xs text-black transition hover:opacity-70">
-            ← Back to Home
-          </Link>
-          <h1 className="mt-6 text-4xl font-normal text-black md:text-5xl">Industries we serve</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-black/75">
-            Explore sector-specific equipment, solutions, and applications tailored to your production environment.
-          </p>
-        </div>
-      </section>
+    <PageShell>
+      <PageHero
+        eyebrow="Industries"
+        title="Industries we serve"
+        description="Explore sector-specific equipment, solutions, and applications tailored to your production environment."
+        centered
+      />
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-2 md:py-16">
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-2 md:py-20">
         {industries.map((industry) => (
           <Link
             key={industry.slug}
             href={`/industries/${industry.slug}`}
-            className="group overflow-hidden rounded-3xl border border-[#fee2e2] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            className="group overflow-hidden rounded-2xl border border-[#fee2e2] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
           >
             <div className="relative aspect-[16/10] bg-white">
               <Image
@@ -48,8 +44,6 @@ export default function IndustriesIndexPage() {
           </Link>
         ))}
       </section>
-
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -1,52 +1,48 @@
 import Link from "next/link";
 import { getProductsForSolution, solutions } from "@/data/solutions";
 
+function formatProductList(names: string[]) {
+  if (names.length === 0) return "";
+  if (names.length === 1) return names[0];
+  if (names.length === 2) return `${names[0]} and ${names[1]}`;
+  return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`;
+}
+
+function buildDescription(shortDescription: string, productNames: string[]) {
+  if (productNames.length === 0) return shortDescription;
+  return `${shortDescription} Includes ${formatProductList(productNames)}.`;
+}
+
+function getMainTitle(title: string) {
+  return title.replace(/\s*\([^)]*\)/g, "").trim();
+}
+
 export default function SolutionCards() {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
       {solutions.map((solution) => {
         const relatedProducts = getProductsForSolution(solution.slug);
+        const description = buildDescription(
+          solution.shortDescription,
+          relatedProducts.map((product) => product.title)
+        );
 
         return (
-          <article
+          <Link
             key={solution.slug}
-            className="flex h-full flex-col rounded-3xl border border-[#fee2e2] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#fecaca] hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] md:p-7"
+            href={`/services/${solution.slug}`}
+            className="group flex h-full flex-col rounded-2xl border border-[#fee2e2] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#fecaca] hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
           >
-            <Link href={`/services/${solution.slug}`} className="group block">
-              <div className="h-1 w-12 rounded-full bg-[#8b1010] transition group-hover:w-16" />
-              <h3 className="mt-5 text-lg font-normal leading-snug text-black md:text-xl">
-                {solution.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/70 md:text-[15px]">
-                {solution.shortDescription}
-              </p>
-            </Link>
-
-            {relatedProducts.length > 0 && (
-              <div className="mt-6 flex-1">
-                <p className="text-xs font-normal text-black/45">Related products</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {relatedProducts.map((product) => (
-                    <Link
-                      key={product.slug}
-                      href={`/products/${product.slug}`}
-                      className="rounded-full border border-[#fee2e2] bg-[#fef2f2] px-3.5 py-1.5 text-xs font-normal text-black transition hover:border-[#fecaca] hover:bg-[#fee2e2] hover:text-[#8b1010]"
-                    >
-                      {product.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <Link
-              href={`/services/${solution.slug}`}
-              className="mt-6 inline-flex items-center gap-1 text-sm font-normal text-black transition hover:translate-x-0.5 hover:text-[#8b1010]"
-            >
-              View details
+            <div className="h-1 w-12 rounded-full bg-[#8b1010] transition group-hover:w-16" />
+            <h3 className="mt-4 text-base !font-semibold leading-snug text-black md:text-lg">
+              {getMainTitle(solution.title)}
+            </h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-black/70 md:text-[15px]">{description}</p>
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-normal text-[#8b1010] transition group-hover:gap-2">
+              Learn more
               <span aria-hidden>→</span>
-            </Link>
-          </article>
+            </span>
+          </Link>
         );
       })}
     </div>

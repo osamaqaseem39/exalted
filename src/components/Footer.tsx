@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import FooterBrands from "@/components/FooterBrands";
 
 const quickLinks = [
   { label: "Products", href: "/products" },
@@ -87,8 +86,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
-        <FooterBrands />
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-[#fee2e2] pt-6 md:flex-row">
           <p className="text-center text-xs text-black/60 md:text-left">

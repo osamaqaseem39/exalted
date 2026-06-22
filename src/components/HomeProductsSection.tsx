@@ -5,27 +5,39 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { productFilters, products } from "@/data/products";
 
+const INITIAL_VISIBLE = 6;
+const LOAD_MORE_COUNT = 6;
+
 export default function HomeProductsSection() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [gridTick, setGridTick] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
   const filteredProducts = useMemo(() => {
     if (activeFilter === "All") return products;
     return products.filter((product) => product.tag === activeFilter);
   }, [activeFilter]);
 
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProducts.length;
+
   const handleFilterClick = (filter: string) => {
     if (filter === activeFilter) return;
     setActiveFilter(filter);
+    setVisibleCount(INITIAL_VISIBLE);
     setGridTick((tick) => tick + 1);
   };
 
+  const handleViewMore = () => {
+    setVisibleCount((count) => Math.min(count + LOAD_MORE_COUNT, filteredProducts.length));
+  };
+
   return (
-    <section id="products-section" className="border-y border-[#fee2e2] bg-[#fafafa] py-14 md:py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="products-section" className="border-t border-[#fee2e2] bg-[#fafafa] py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <h2 className="text-4xl font-normal text-black md:text-5xl lg:text-6xl">Products</h2>
-          <div className="mx-auto mt-5 h-px w-24 bg-[#fee2e2]" />
+          <h2 className="text-3xl font-normal text-black md:text-4xl">Products</h2>
+          <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
 
           <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-10 md:gap-4">
             {productFilters.map((filter) => {
@@ -44,10 +56,7 @@ export default function HomeProductsSection() {
                 >
                   <span className="relative z-10">{filter}</span>
                   {isActive && (
-                    <span
-                      className="product-filter-ripple absolute inset-0 bg-white/20"
-                      aria-hidden
-                    />
+                    <span className="product-filter-ripple absolute inset-0 bg-white/20" aria-hidden />
                   )}
                 </button>
               );
@@ -59,7 +68,7 @@ export default function HomeProductsSection() {
           key={`${activeFilter}-${gridTick}`}
           className="product-grid-animate mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
         >
-          {filteredProducts.map((product, index) => (
+          {visibleProducts.map((product, index) => (
             <Link
               key={product.slug}
               href={`/products/${product.slug}`}
@@ -84,6 +93,22 @@ export default function HomeProductsSection() {
             </Link>
           ))}
         </div>
+
+        {hasMore && (
+          <div className="mt-10 text-center md:mt-12">
+            <button
+              type="button"
+              onClick={handleViewMore}
+              className="inline-flex items-center gap-2 rounded-full bg-[#8b1010] px-8 py-3 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
+            >
+              View more
+              <span aria-hidden>↓</span>
+            </button>
+            <p className="mt-3 text-xs text-black/50">
+              Showing {visibleProducts.length} of {filteredProducts.length} products
+            </p>
+          </div>
+        )}
 
         {filteredProducts.length === 0 && (
           <p className="py-16 text-center text-base text-black/70">No products in this category yet.</p>

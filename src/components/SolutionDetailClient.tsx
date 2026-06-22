@@ -1,59 +1,70 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbBar from "@/components/layout/BreadcrumbBar";
+import PageAccentBar from "@/components/layout/PageAccentBar";
+import { productTheme } from "@/components/products/productTheme";
+import type { Product } from "@/data/products";
 import type { Solution } from "@/data/solutions";
 
 type SolutionDetailClientProps = {
   solution: Solution;
-  related: Solution[];
+  relatedProducts: Product[];
 };
 
-export default function SolutionDetailClient({ solution, related }: SolutionDetailClientProps) {
-  const quoteHref = `/contact?solution=${encodeURIComponent(solution.title)}`;
-  const productsHref = solution.productCategory
-    ? `/products?category=${encodeURIComponent(solution.productCategory)}`
-    : solution.slug === "track-trace"
-      ? "/company#pharma-track-trace"
-      : "/products";
+export default function SolutionDetailClient({ solution, relatedProducts }: SolutionDetailClientProps) {
+  const quoteHref = `/contact?solution=${encodeURIComponent(solution.slug)}`;
 
   return (
     <div className="bg-white text-black">
-      <div className="flex h-1 w-full">
-        <div className="flex-1 bg-black" />
-        <div className="w-28 bg-[#8b1010]" />
-      </div>
+      <PageAccentBar />
 
-      <div className="border-b border-[#fee2e2] bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 text-xs text-black">
-          <Link href="/services" className="transition hover:opacity-70">
-            ← Back to Services
-          </Link>
-          <span className="text-black/60">{solution.productCategoryLabel ?? "Solution"}</span>
-        </div>
-      </div>
+      <BreadcrumbBar
+        backHref="/services"
+        backLabel="← Back to Services"
+        trailing={solution.productCategoryLabel ?? "Solution"}
+      />
 
-      <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
-        <p className="text-xs font-normal tracking-[0.2em] text-black/50">Solution</p>
-        <h1 className="mt-3 max-w-3xl text-3xl font-normal leading-tight text-black md:text-4xl lg:text-5xl">
-          {solution.title}
-        </h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/75 md:text-lg">
-          {solution.shortDescription}
-        </p>
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="grid items-start gap-8 lg:grid-cols-[1fr_minmax(260px,340px)] lg:gap-10">
+          <div>
+            <p className="text-xs font-normal tracking-[0.25em] text-black">Solution</p>
+            <h1 className="mt-3 max-w-3xl text-3xl font-normal leading-tight text-black md:text-4xl lg:text-5xl">
+              {solution.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/75 md:text-lg">
+              {solution.shortDescription}
+            </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href={quoteHref}
-            className="rounded-full bg-[#8b1010] px-6 py-2.5 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
-          >
-            Request Consultation
-          </Link>
-          <Link
-            href={productsHref}
-            className="rounded-full border border-[#fecaca] bg-white px-6 py-2.5 text-sm font-normal text-black transition hover:bg-[#fef2f2]"
-          >
-            View Related Products
-          </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href={quoteHref}
+                className="rounded-full bg-[#8b1010] px-6 py-2.5 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
+              >
+                Request Consultation
+              </Link>
+              {relatedProducts.length > 0 && (
+                <a
+                  href="#related-products"
+                  className="rounded-full border border-[#fecaca] bg-white px-6 py-2.5 text-sm font-normal text-black transition hover:bg-[#fef2f2]"
+                >
+                  View Related Products
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#fee2e2] bg-[#fafafa] shadow-sm lg:justify-self-end">
+            <Image
+              src={solution.image}
+              alt={solution.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 340px"
+            />
+          </div>
         </div>
       </div>
 
@@ -110,23 +121,47 @@ export default function SolutionDetailClient({ solution, related }: SolutionDeta
         </div>
       </div>
 
-      {related.length > 0 && (
-        <div className="border-t border-[#fee2e2] bg-[#fef2f2]">
+      {relatedProducts.length > 0 && (
+        <div id="related-products" className="scroll-mt-24 border-t border-[#fee2e2] bg-[#fef2f2]">
           <div className="mx-auto max-w-6xl px-6 py-12 md:py-14">
-            <h2 className="text-2xl font-normal text-black">Related Solutions</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/services/${item.slug}`}
-                  className="group rounded-2xl border border-[#fee2e2] bg-white p-5 transition hover:border-[#fecaca] hover:shadow-md"
+            <h2 className="text-2xl font-normal text-black">Related Products</h2>
+            <p className="mt-2 text-sm text-black/65">
+              Equipment matched to this solution. Select a product for full specifications.
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+              {relatedProducts.map((product) => (
+                <article
+                  key={product.slug}
+                  className="flex flex-col overflow-hidden rounded-2xl border border-[#fee2e2] bg-white shadow-sm transition hover:border-[#fecaca] hover:shadow-md"
                 >
-                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-[#8b1010]" />
-                  <h3 className="mt-3 text-sm font-normal leading-snug text-black group-hover:underline">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-xs text-black/65">{item.shortDescription}</p>
-                </Link>
+                  <Link href={`/products/${product.slug}`} className="group block">
+                    <div className="flex h-48 items-center justify-center border-b border-[#fee2e2] bg-[#fafafa] p-4">
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        width={240}
+                        height={180}
+                        className="max-h-full w-auto object-contain transition group-hover:scale-105"
+                      />
+                    </div>
+                  </Link>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-base !font-semibold text-black">{product.title}</h3>
+                    <p className="mt-1 text-xs text-black/60">
+                      {product.brand} · {product.tag}
+                    </p>
+                    <p className="mt-3 line-clamp-2 flex-1 text-sm leading-relaxed text-black/70">
+                      {product.description}
+                    </p>
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="mt-4 inline-block w-fit rounded-full px-5 py-2 text-xs font-normal text-white transition hover:opacity-90"
+                      style={{ backgroundColor: productTheme.button }}
+                    >
+                      View Product
+                    </Link>
+                  </div>
+                </article>
               ))}
             </div>
           </div>

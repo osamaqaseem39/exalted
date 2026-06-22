@@ -207,7 +207,11 @@ export function getProductBySlug(slug: string) {
   return products.find((p) => p.slug === slug);
 }
 
-export function getFeaturedProduct() {
+export function getFeaturedProduct(category: string = "All") {
+  if (category !== "All") {
+    const categoryProducts = getProductsByCategory(category);
+    return categoryProducts[0] ?? null;
+  }
   return getProductBySlug(featuredProductSlug) ?? products[8];
 }
 

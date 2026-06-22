@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbBar from "@/components/layout/BreadcrumbBar";
+import PageAccentBar from "@/components/layout/PageAccentBar";
+import SectionHeading from "@/components/layout/SectionHeading";
 import type { Industry } from "@/data/industries";
 import { getProductBySlug } from "@/data/products";
 import { getSolutionBySlug } from "@/data/solutions";
@@ -22,24 +25,14 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
 
   return (
     <div className="bg-white text-black">
-      <div className="flex h-1 w-full">
-        <div className="flex-1 bg-black" />
-        <div className="w-28 bg-[#8b1010]" />
-      </div>
+      <PageAccentBar />
 
-      <div className="border-b border-[#fee2e2] bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 text-xs text-black">
-          <Link href="/#industries-section" className="transition hover:opacity-70">
-            ← Back to Industries
-          </Link>
-          <span className="text-black/60">Industry sector</span>
-        </div>
-      </div>
+      <BreadcrumbBar backHref="/industries" backLabel="← Back to Industries" trailing="Industry sector" />
 
       <section className="border-b border-[#fee2e2] bg-gradient-to-br from-white via-[#fef2f2] to-white">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-2 md:items-center md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-2 md:items-center md:py-20">
           <div>
-            <p className="text-xs font-normal tracking-[0.2em] text-black/50">Industry</p>
+            <p className="text-xs font-normal tracking-[0.25em] text-black">Industry</p>
             <h1 className="mt-3 text-4xl font-normal leading-tight text-black md:text-5xl">
               {industry.name}
             </h1>
@@ -49,7 +42,7 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href={`/contact?industry=${encodeURIComponent(industry.name)}`}
+                href={`/contact?industry=${encodeURIComponent(industry.slug)}`}
                 className="rounded-full bg-[#8b1010] px-6 py-2.5 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
               >
                 Request Consultation
@@ -75,9 +68,9 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-normal text-black md:text-3xl">Overview</h2>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75">{industry.overview}</p>
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <SectionHeading title="Overview" />
+        <p className="mt-8 max-w-3xl text-base leading-relaxed text-black/75">{industry.overview}</p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-3">
           {industry.highlights.map((item) => (
             <li
@@ -90,10 +83,10 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
         </ul>
       </section>
 
-      <section className="border-y border-[#fee2e2] bg-[#fafafa] py-12 md:py-16">
+      <section className="border-y border-[#fee2e2] bg-[#fafafa] py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-2xl font-normal text-black md:text-3xl">Solutions for {industry.name}</h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <SectionHeading title={`Solutions for ${industry.name}`} />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {solutions.map((solution) => (
               <Link
                 key={solution.slug}
@@ -109,9 +102,9 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-normal text-black md:text-3xl">Equipment & applications</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <SectionHeading title="Equipment & applications" />
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {industry.gallery.map((image) => (
             <figure
               key={image.src}
@@ -134,10 +127,10 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
         </div>
       </section>
 
-      <section className="border-t border-[#fee2e2] bg-[#f4f6f8] py-12 md:py-16">
+      <section className="border-t border-[#fee2e2] bg-[#fef2f2] py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-2xl font-normal text-black md:text-3xl">Related products</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading title="Related products" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <Link
                 key={product.slug}
@@ -163,9 +156,9 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <h2 className="text-xl font-normal text-black md:text-2xl">Other industries</h2>
-        <div className="mt-6 flex flex-wrap gap-3">
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <SectionHeading title="Other industries" />
+        <div className="mt-8 flex flex-wrap gap-3">
           {others.map((other) => (
             <Link
               key={other.slug}

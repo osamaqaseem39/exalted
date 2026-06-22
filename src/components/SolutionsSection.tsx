@@ -3,14 +3,11 @@ import SolutionCards from "@/components/SolutionCards";
 
 export default function SolutionsSection() {
   return (
-    <section
-      id="solutions-section"
-      className="mx-auto mt-12 max-w-6xl px-6 md:mt-16"
-    >
+    <section id="solutions-section" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
       <div className="text-center">
-        <h2 className="text-4xl font-normal text-black md:text-5xl">Solutions we offer</h2>
-        <div className="mx-auto mt-4 h-px w-20 bg-[#fee2e2]" />
-        <p className="mx-auto mt-8 max-w-3xl text-lg text-black md:text-xl">
+        <h2 className="text-3xl font-normal text-black md:text-4xl">Solutions we offer</h2>
+        <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
+        <p className="mx-auto mt-5 max-w-2xl text-base text-black/80">
           Industrial coding, inspection, and software systems under one roof.
         </p>
       </div>

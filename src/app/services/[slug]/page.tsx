@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/layout/PageShell";
 import SolutionDetailClient from "@/components/SolutionDetailClient";
-import { getRelatedSolutions, getSolutionBySlug, solutions } from "@/data/solutions";
+import { getProductsForSolution, getSolutionBySlug, solutions } from "@/data/solutions";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,12 +27,11 @@ export default async function SolutionDetailPage({ params }: Props) {
   const solution = getSolutionBySlug(slug);
   if (!solution) notFound();
 
-  const related = getRelatedSolutions(slug, 3);
+  const relatedProducts = getProductsForSolution(slug);
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <SolutionDetailClient solution={solution} related={related} />
-      <Footer />
-    </div>
+    <PageShell>
+      <SolutionDetailClient solution={solution} relatedProducts={relatedProducts} />
+    </PageShell>
   );
 }

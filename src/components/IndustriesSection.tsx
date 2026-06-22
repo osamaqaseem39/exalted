@@ -25,15 +25,15 @@ export default function IndustriesSection() {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <section id="industries-section" className="scroll-mt-24 bg-[#f4f6f8] py-14 md:py-20">
+    <section id="industries-section" className="scroll-mt-24 border-t border-[#fee2e2] bg-[#fef2f2] py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 text-center">
-        <h3 className="text-4xl font-normal text-black md:text-5xl">Industries</h3>
-        <div className="mx-auto mt-4 h-px w-20 bg-[#fee2e2]" />
-        <p className="mx-auto mt-8 max-w-3xl text-lg text-black md:text-xl">
+        <h3 className="text-3xl font-normal text-black md:text-4xl">Industries</h3>
+        <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
+        <p className="mx-auto mt-5 max-w-2xl text-base text-black/80">
           Find industry-specific coding and marking setups built for speed, compliance, and reliability.
         </p>
 
-        <div className="mx-auto mt-12 flex max-w-5xl flex-wrap items-start justify-center gap-x-10 gap-y-12 md:gap-x-14 lg:gap-x-16">
+        <div className="mx-auto mt-12 flex max-w-6xl flex-wrap items-start justify-center gap-x-10 gap-y-12 md:gap-x-14 lg:gap-x-16">
           {industries.map((industry) => {
             const Icon = iconMap[industry.slug as keyof typeof iconMap];
             const isActive = active === industry.slug;

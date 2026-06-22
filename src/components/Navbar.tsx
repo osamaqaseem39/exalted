@@ -72,12 +72,10 @@ function NavbarBar({
         <div className="relative" onMouseEnter={() => setProductsOpen(true)}>
           <Link
             href="/products"
-            className={`flex items-center gap-1.5 transition ${
-              productsOpen
-                ? "rounded-lg border border-black px-2 py-1.5"
-                : productsActive
-                  ? "font-normal text-black"
-                  : "text-black hover:opacity-70"
+            className={`flex items-center gap-1.5 transition hover:opacity-70 ${
+              productsOpen || productsActive
+                ? "font-normal text-black underline decoration-[#8b1010] underline-offset-4"
+                : "text-black/70"
             } ${floating ? "px-2 py-1.5 text-xs lg:text-sm" : ""}`}
             onClick={() => setProductsOpen(false)}
           >

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/layout/PageShell";
+import SectionHeading from "@/components/layout/SectionHeading";
+import SplitHero from "@/components/layout/SplitHero";
+import StatsStrip from "@/components/layout/StatsStrip";
 import SolutionCards from "@/components/SolutionCards";
+import BrandsSection from "@/components/BrandsSection";
 import { sectors, services } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -20,107 +23,43 @@ const highlights = [
 
 export default function ServicesPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black">
-      {/* Hero with image */}
-      <section className="border-b border-[#fee2e2] bg-white">
-        <div className="mx-auto grid max-w-6xl gap-0 lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-6 py-12 md:px-10 md:py-16 lg:py-20">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1 text-xs font-normal text-black transition hover:opacity-70"
-            >
-              ← Back to Home
-            </Link>
-            <p className="mt-6 text-xs font-normal tracking-[0.25em] text-black">
-              What We Deliver
-            </p>
-            <h1 className="mt-3 text-4xl font-normal leading-tight text-black md:text-5xl">
-              Services &amp; sectors
-            </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-black/80">
-              End-to-end coding, inspection, and packaging solutions for every industry — from line assessment
-              and installation to lifetime technical support.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="rounded-full bg-[#8b1010] px-6 py-2.5 text-sm font-normal text-white transition hover:bg-[#6e0d0d]"
-              >
-                Request Consultation
-              </Link>
-              <Link
-                href="/products"
-                className="rounded-full border border-[#fecaca] bg-white px-6 py-2.5 text-sm font-normal text-black transition hover:bg-[#fef2f2]"
-              >
-                View Products
-              </Link>
-            </div>
-          </div>
+    <PageShell>
+      <SplitHero
+        eyebrow="What We Deliver"
+        title="Services & sectors"
+        description="End-to-end coding, inspection, and packaging solutions for every industry — from line assessment and installation to lifetime technical support."
+        image="/images/hero-production-floor.png"
+        imageAlt="Exalted industrial coding and packaging production line"
+        primaryCta={{ href: "/contact", label: "Request Consultation" }}
+        secondaryCta={{ href: "/products", label: "View Products" }}
+        overlay={{
+          title: "Industrial Excellence",
+          description: "Coding, inspection & packing systems for regulated production environments.",
+        }}
+      />
 
-          <div className="relative min-h-[280px] lg:min-h-full">
-            <Image
-              src="/images/hero-production-floor.png"
-              alt="Exalted industrial coding and packaging production line"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-transparent lg:from-white/40" />
-            <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/30 bg-white/90 p-4 backdrop-blur-sm md:left-auto md:right-8 md:max-w-xs">
-              <p className="text-xs font-normal tracking-wide text-black">
-                Industrial Excellence
-              </p>
-              <p className="mt-1 text-sm text-black/70">
-                Coding, inspection &amp; packing systems for regulated production environments.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsStrip items={highlights} />
 
-      {/* Stats strip */}
-      <section className="border-b border-[#fee2e2] bg-[#fef2f2]">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 py-8 md:grid-cols-4 md:py-10">
-          {highlights.map((item) => (
-            <div key={item.label} className="text-center md:text-left">
-              <p className="text-2xl font-normal text-black md:text-3xl">{item.value}</p>
-              <p className="mt-1 text-xs font-normal tracking-wide text-black/60">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Solutions */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl font-normal text-black md:text-4xl">Solutions we offer</h2>
-          <div className="mt-4 h-px w-16 bg-[#fee2e2]" />
-          <p className="mt-5 text-base text-black/80">
-            Equipment and software from world-renowned partners, integrated for your production environment.
-          </p>
-        </div>
+        <SectionHeading
+          title="Solutions we offer"
+          description="Equipment and software from world-renowned partners, integrated for your production environment."
+        />
         <div className="mt-10">
           <SolutionCards />
         </div>
       </section>
 
-      {/* Lifecycle services */}
       <section className="border-y border-[#fee2e2] bg-[#fafafa] py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-normal text-black md:text-4xl">Lifecycle services</h2>
-            <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
-            <p className="mx-auto mt-5 max-w-2xl text-base text-black/80">
-              Technical support of our installed base is our primary method of earning customer satisfaction.
-            </p>
-          </div>
+          <SectionHeading
+            title="Lifecycle services"
+            description="Technical support of our installed base is our primary method of earning customer satisfaction."
+            centered
+          />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((svc, index) => (
-              <article
-                key={svc.title}
-                className="relative rounded-2xl border border-[#fee2e2] bg-white p-6 pt-8"
-              >
+              <article key={svc.title} className="relative rounded-2xl border border-[#fee2e2] bg-white p-6 pt-8">
                 <span className="absolute left-6 top-0 -translate-y-1/2 rounded-full bg-[#8b1010] px-3 py-1 text-[10px] font-normal tracking-wide text-white">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -132,15 +71,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Sectors */}
-      <section id="sectors" className="scroll-mt-24 mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl font-normal text-black md:text-4xl">Industries &amp; sectors</h2>
-          <div className="mt-4 h-px w-16 bg-[#fee2e2]" />
-          <p className="mt-5 text-base text-black/80">
-            Solutions tailored to each industry&apos;s compliance requirements and production speeds.
-          </p>
-        </div>
+      <section id="sectors" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 md:py-20">
+        <SectionHeading
+          title="Industries & sectors"
+          description="Solutions tailored to each industry's compliance requirements and production speeds."
+        />
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {sectors.map((sector) => (
             <article
@@ -165,17 +100,16 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pharma + CTA */}
+      <BrandsSection variant="embedded" />
+
       <section className="border-t border-[#fee2e2] bg-[#fef2f2]">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-2 md:py-16">
           <div className="rounded-2xl border border-[#fee2e2] bg-white p-8">
-            <p className="text-xs font-normal tracking-[0.2em] text-black/60">
-              Pharma Track &amp; Trace
-            </p>
+            <p className="text-xs font-normal tracking-[0.2em] text-black/60">Pharma Track &amp; Trace</p>
             <h2 className="mt-3 text-2xl font-normal text-black">Serialization from Line to Patient</h2>
             <p className="mt-4 text-sm leading-relaxed text-black/70">
-              Our in-house software development capability enables end-to-end pharma serialization and
-              aggregation — from Level 1 devices on the production line to Level 4 enterprise reporting.
+              Our in-house software development capability enables end-to-end pharma serialization and aggregation — from
+              Level 1 devices on the production line to Level 4 enterprise reporting.
             </p>
             <Link
               href="/company#pharma-track-trace"
@@ -188,8 +122,8 @@ export default function ServicesPage() {
           <div className="flex flex-col justify-center rounded-2xl border border-[#fecaca] bg-white p-8 text-center md:text-left">
             <h3 className="text-xl font-normal text-black">Not sure which solution fits?</h3>
             <p className="mt-3 text-sm leading-relaxed text-black/70">
-              Our sales engineers assess your line speed, compliance requirements, and budget to recommend
-              the right equipment.
+              Our sales engineers assess your line speed, compliance requirements, and budget to recommend the right
+              equipment.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               <Link
@@ -208,8 +142,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -19,7 +19,7 @@ export default function ProductSpecList({ sections, compact = false }: ProductSp
     <div className={compact ? "space-y-5" : "space-y-7"}>
       {sections.map((section) => (
         <section key={section.title}>
-          <h3 className="mb-3 border-b border-[#e5e5e5] pb-2 text-xs font-normal tracking-[0.12em] text-black">
+          <h3 className="mb-3 border-b border-[#fee2e2] pb-2 text-xs font-normal tracking-[0.12em] text-black">
             {section.title}
           </h3>
           <dl className="space-y-2.5">

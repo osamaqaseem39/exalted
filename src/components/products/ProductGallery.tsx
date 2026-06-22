@@ -16,7 +16,7 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   return (
     <div>
-      <div className="flex min-h-[320px] items-center justify-center border border-[#e5e5e5] bg-white p-6 md:min-h-[380px]">
+      <div className="flex min-h-[320px] items-center justify-center border border-[#fee2e2] bg-white p-6 md:min-h-[380px]">
         <Image
           src={activeImage}
           alt={alt}

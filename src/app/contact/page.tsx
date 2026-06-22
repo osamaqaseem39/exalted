@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
 import OfficesScrollMap from "@/components/OfficesScrollMap";
 import PageHero from "@/components/PageHero";
+import PageShell from "@/components/layout/PageShell";
+import SectionHeading from "@/components/layout/SectionHeading";
 import { offices } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -12,14 +16,14 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black">
+    <PageShell>
       <PageHero
         eyebrow="Get in Touch"
         title="Contact us"
         description="Reach our sales and support teams in Karachi or Lahore. We respond to equipment inquiries, technical support, and partnership requests."
       />
 
-      <section className="mx-auto max-w-6xl px-6 py-14">
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="space-y-5 lg:col-span-2">
             <article className="rounded-2xl border border-[#fee2e2] bg-white p-6 shadow-sm">
@@ -35,7 +39,7 @@ export default function ContactPage() {
                 href={offices.karachi.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-block rounded-full bg-[#e31e24] px-4 py-1.5 text-xs font-normal text-white transition hover:bg-[#c41a20]"
+                className="mt-2 inline-block rounded-full bg-[#8b1010] px-4 py-1.5 text-xs font-normal text-white transition hover:bg-[#6e0d0d]"
               >
                 WhatsApp
               </a>
@@ -50,14 +54,6 @@ export default function ContactPage() {
                 className="mt-3 block text-sm font-normal text-black transition hover:text-black"
               >
                 {offices.lahore.email}
-              </a>
-              <a
-                href={offices.lahore.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 block text-sm text-black transition hover:text-black"
-              >
-                www.exalted.com.pk
               </a>
             </article>
 
@@ -74,24 +70,24 @@ export default function ContactPage() {
               Fill out the form and we will get back to you. Required fields are marked with *.
             </p>
             <div className="mt-5">
-              <ContactForm compact />
+              <Suspense fallback={<p className="text-sm text-black/60">Loading form…</p>}>
+                <ContactForm compact />
+              </Suspense>
             </div>
           </div>
         </div>
       </section>
 
       <section className="border-t border-[#fee2e2] bg-[#fef2f2]">
-        <div className="px-4 py-10 text-center sm:px-6 sm:py-12">
-          <h2 className="text-3xl font-normal text-black md:text-4xl">Find Us</h2>
-          <div className="mx-auto mt-4 h-px w-20 bg-[#fee2e2]" />
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-black md:text-base">
-            Swipe or use the side arrows to browse our Lahore head office and Karachi office.
-          </p>
+        <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+          <SectionHeading
+            title="Find Us"
+            description="Swipe or use the side arrows to browse our Lahore head office and Karachi office."
+            centered
+          />
         </div>
         <OfficesScrollMap />
       </section>
-
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -124,12 +124,12 @@ export default function TechnologiesSection() {
     <section
       id="technologies-section"
       data-reveal
-      className="mt-20 translate-y-8 bg-[#f7f7f7] py-16 opacity-0 transition-all duration-700 md:py-20"
+      className="translate-y-8 border-t border-[#fee2e2] bg-[#fafafa] py-16 opacity-0 transition-all duration-700 md:py-20"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
-        <h2 className="text-4xl font-normal text-black md:text-5xl">Technologies</h2>
-        <div className="mx-auto mt-4 h-px w-24 bg-[#d4d4d4]" />
-        <p className="mx-auto mt-8 max-w-3xl text-base text-black/80 md:text-lg">
+        <h2 className="text-3xl font-normal text-black md:text-4xl">Technologies</h2>
+        <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
+        <p className="mx-auto mt-5 max-w-2xl text-base text-black/80">
           Talk to us to find the right solution for your industry&apos;s printing and marking needs.
         </p>
 

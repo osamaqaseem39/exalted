@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getProductBySlug, products } from "@/data/products";
+import { getSolutionBySlug, solutions } from "@/data/solutions";
+import { getIndustryBySlug, industries } from "@/data/industries";
 
 type ContactFormData = {
   name: string;
@@ -11,7 +15,69 @@ type ContactFormData = {
   message: string;
 };
 
+const productInterestOptions = [
+  { value: "", label: "Select category" },
+  { value: "Serialization", label: "Serialization & Track & Trace" },
+  { value: "Printing", label: "Printing Equipment" },
+  { value: "Inspection", label: "Machine Vision / X-Ray" },
+  { value: "Detection", label: "Metal Detection" },
+  { value: "Weighing", label: "Check Weighing" },
+  { value: "Labelling", label: "Labeling Machines" },
+  { value: "Software", label: "Software Solutions" },
+] as const;
+
+function mapTagToInterest(tag: string) {
+  const allowed = productInterestOptions.map((o) => o.value);
+  return allowed.includes(tag as (typeof allowed)[number]) ? tag : "";
+}
+
+function getPrefillFromParams(searchParams: URLSearchParams): Pick<ContactFormData, "product" | "message"> {
+  const productParam = searchParams.get("product");
+  const solutionParam = searchParams.get("solution");
+  const industryParam = searchParams.get("industry");
+
+  if (productParam) {
+    const product =
+      getProductBySlug(productParam) ?? products.find((p) => p.title === decodeURIComponent(productParam));
+    if (product) {
+      return {
+        product: mapTagToInterest(product.tag),
+        message: `I'm interested in a quote for ${product.title} (${product.brand}).\n\n${product.description}`,
+      };
+    }
+  }
+
+  if (solutionParam) {
+    const decoded = decodeURIComponent(solutionParam);
+    const solution = getSolutionBySlug(decoded) ?? solutions.find((s) => s.title === decoded);
+    if (solution) {
+      let interest = solution.productCategory ? mapTagToInterest(solution.productCategory) : "";
+      if (!interest && solution.slug === "track-trace") interest = "Serialization";
+      if (!interest && solution.slug === "software-solutions") interest = "Software";
+
+      return {
+        product: interest,
+        message: `I'm interested in a quote for ${solution.title}.\n\n${solution.shortDescription}`,
+      };
+    }
+    return { product: "", message: `I'm interested in a quote for ${decoded}.` };
+  }
+
+  if (industryParam) {
+    const decoded = decodeURIComponent(industryParam);
+    const industry = getIndustryBySlug(decoded) ?? industries.find((i) => i.name === decoded);
+    const name = industry?.name ?? decoded;
+    return {
+      product: "",
+      message: `I'm interested in equipment and solutions for the ${name} industry.`,
+    };
+  }
+
+  return { product: "", message: "" };
+}
+
 export default function ContactForm({ compact = false }: { compact?: boolean }) {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -21,6 +87,17 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
     message: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+
+  useEffect(() => {
+    const prefill = getPrefillFromParams(searchParams);
+    if (!prefill.product && !prefill.message) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      product: prefill.product || prev.product,
+      message: prefill.message || prev.message,
+    }));
+  }, [searchParams]);
 
   const handleChange = (field: keyof ContactFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -67,19 +144,16 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         <label className="block sm:col-span-2">
           <span className="mb-1 block text-xs font-normal text-black">Product Interest</span>
           <select value={formData.product} onChange={(e) => handleChange("product", e.target.value)} className={inputClass}>
-            <option value="">Select category</option>
-            <option value="Serialization">Serialization & Track & Trace</option>
-            <option value="Printing">Printing Equipment</option>
-            <option value="Inspection">Machine Vision / X-Ray</option>
-            <option value="Detection">Metal Detection</option>
-            <option value="Weighing">Check Weighing</option>
-            <option value="Labelling">Labeling Machines</option>
-            <option value="Software">Software Solutions</option>
+            {productInterestOptions.map((option) => (
+              <option key={option.value || "default"} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </label>
         <label className="block sm:col-span-2">
           <span className="mb-1 block text-xs font-normal text-black">Message *</span>
-          <textarea required rows={3} value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="Describe your requirements..." className={`${inputClass} resize-none`} />
+          <textarea required rows={6} value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="Describe your requirements..." className={`${inputClass} min-h-[9rem] resize-y`} />
         </label>
       </div>
       {formStatus === "error" && <p className="mt-2 text-xs text-black">Please fill required fields.</p>}
