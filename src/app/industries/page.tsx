@@ -27,7 +27,7 @@ export default function IndustriesIndexPage() {
             href={`/industries/${industry.slug}`}
             className="group overflow-hidden rounded-2xl border border-[#fee2e2] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
           >
-            <div className="relative aspect-[16/10] bg-white">
+            <div className="relative aspect-square bg-white">
               <Image
                 src={industry.heroImage}
                 alt={industry.name}

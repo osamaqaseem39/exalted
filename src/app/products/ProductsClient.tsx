@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import BreadcrumbBar from "@/components/layout/BreadcrumbBar";
 import PageAccentBar from "@/components/layout/PageAccentBar";
 import PageShell from "@/components/layout/PageShell";
+import ProductImageFrame from "@/components/products/ProductImageFrame";
 import ProductSpecList from "@/components/products/ProductSpecList";
 import { productTheme } from "@/components/products/productTheme";
 import {
@@ -113,16 +113,14 @@ export default function ProductsClient() {
 
             <div className="lg:col-span-5">
               <Link href={`/products/${featured.slug}`} className="group block">
-                <div className="flex min-h-[280px] items-center justify-center border border-[#fee2e2] bg-white p-6">
-                  <Image
-                    src={featured.image}
-                    alt={featured.title}
-                    width={480}
-                    height={380}
-                    className="max-h-[260px] w-auto object-contain transition group-hover:scale-[1.02]"
-                    priority
-                  />
-                </div>
+                <ProductImageFrame
+                  src={featured.image}
+                  alt={featured.title}
+                  priority
+                  className="border border-[#fee2e2] transition group-hover:opacity-95"
+                  imageClassName="transition duration-300 group-hover:scale-[1.02]"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                />
               </Link>
             </div>
 
@@ -224,15 +222,12 @@ export default function ProductsClient() {
                       className="flex flex-col overflow-hidden rounded-2xl border border-[#fee2e2] bg-white shadow-sm transition hover:border-[#fecaca] hover:shadow-md"
                     >
                       <Link href={`/products/${product.slug}`} className="group block">
-                        <div className="flex h-48 items-center justify-center border-b border-[#fee2e2] bg-[#fafafa] p-4">
-                          <Image
-                            src={product.image}
-                            alt={product.title}
-                            width={240}
-                            height={180}
-                            className="max-h-full w-auto object-contain transition group-hover:scale-105"
-                          />
-                        </div>
+                        <ProductImageFrame
+                          src={product.image}
+                          alt={product.title}
+                          className="border-b border-[#fee2e2] bg-[#fafafa]"
+                          imageClassName="transition duration-300 group-hover:scale-105"
+                        />
                       </Link>
                       <div className="flex flex-1 flex-col p-5">
                         <h2 className="text-base !font-semibold text-black">{product.title}</h2>
@@ -262,15 +257,12 @@ export default function ProductsClient() {
                   >
                     <div className="lg:col-span-4">
                       <Link href={`/products/${product.slug}`} className="group block">
-                        <div className="flex min-h-[220px] items-center justify-center border border-[#fee2e2] bg-white p-5">
-                          <Image
-                            src={product.image}
-                            alt={product.title}
-                            width={280}
-                            height={220}
-                            className="max-h-[200px] w-auto object-contain transition group-hover:scale-105"
-                          />
-                        </div>
+                        <ProductImageFrame
+                          src={product.image}
+                          alt={product.title}
+                          className="border border-[#fee2e2]"
+                          imageClassName="transition duration-300 group-hover:scale-105"
+                        />
                       </Link>
                     </div>
 

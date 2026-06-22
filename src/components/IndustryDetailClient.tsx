@@ -55,7 +55,7 @@ export default function IndustryDetailClient({ industry, others }: IndustryDetai
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-[#fee2e2] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+            <div className="relative aspect-square overflow-hidden rounded-3xl border border-[#fee2e2] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
             <Image
               src={industry.heroImage}
               alt={industry.name}

@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbBar from "@/components/layout/BreadcrumbBar";
 import PageAccentBar from "@/components/layout/PageAccentBar";
 import { productTheme } from "@/components/products/productTheme";
+import ProductImageFrame from "@/components/products/ProductImageFrame";
 import type { Product } from "@/data/products";
 import type { Solution } from "@/data/solutions";
 
@@ -55,16 +55,13 @@ export default function SolutionDetailClient({ solution, relatedProducts }: Solu
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#fee2e2] bg-[#fafafa] shadow-sm lg:justify-self-end">
-            <Image
-              src={solution.image}
-              alt={solution.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 340px"
-            />
-          </div>
+          <ProductImageFrame
+            src={solution.image}
+            alt={solution.title}
+            priority
+            className="rounded-2xl border border-[#fee2e2] bg-[#fafafa] shadow-sm lg:justify-self-end"
+            sizes="(max-width: 1024px) 100vw, 340px"
+          />
         </div>
       </div>
 
@@ -135,15 +132,12 @@ export default function SolutionDetailClient({ solution, relatedProducts }: Solu
                   className="flex flex-col overflow-hidden rounded-2xl border border-[#fee2e2] bg-white shadow-sm transition hover:border-[#fecaca] hover:shadow-md"
                 >
                   <Link href={`/products/${product.slug}`} className="group block">
-                    <div className="flex h-48 items-center justify-center border-b border-[#fee2e2] bg-[#fafafa] p-4">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        width={240}
-                        height={180}
-                        className="max-h-full w-auto object-contain transition group-hover:scale-105"
-                      />
-                    </div>
+                    <ProductImageFrame
+                      src={product.image}
+                      alt={product.title}
+                      className="border-b border-[#fee2e2] bg-[#fafafa]"
+                      imageClassName="transition duration-300 group-hover:scale-105"
+                    />
                   </Link>
                   <div className="flex flex-1 flex-col p-5">
                     <h3 className="text-base !font-semibold text-black">{product.title}</h3>

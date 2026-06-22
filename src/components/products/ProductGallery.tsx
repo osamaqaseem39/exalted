@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import ProductImageFrame from "@/components/products/ProductImageFrame";
 import { productTheme } from "@/components/products/productTheme";
 
 type ProductGalleryProps = {
@@ -16,16 +17,13 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   return (
     <div>
-      <div className="flex min-h-[320px] items-center justify-center border border-[#fee2e2] bg-white p-6 md:min-h-[380px]">
-        <Image
-          src={activeImage}
-          alt={alt}
-          width={520}
-          height={420}
-          className="max-h-[300px] w-auto object-contain md:max-h-[340px]"
-          priority
-        />
-      </div>
+      <ProductImageFrame
+        src={activeImage}
+        alt={alt}
+        priority
+        className="border border-[#fee2e2]"
+        sizes="(max-width: 1024px) 100vw, 42vw"
+      />
       {galleryImages.length > 1 && (
         <div className="mt-3 flex gap-2">
           {galleryImages.map((src, index) => (
@@ -33,12 +31,12 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
               key={`${src}-${index}`}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className="flex h-16 w-16 items-center justify-center border bg-white p-1 transition"
+              className="relative aspect-square h-16 w-16 overflow-hidden border bg-white"
               style={{
                 borderColor: activeIndex === index ? productTheme.text : productTheme.border,
               }}
             >
-              <Image src={src} alt="" width={56} height={56} className="h-full w-full object-contain" />
+              <Image src={src} alt="" fill className="object-cover object-center" sizes="64px" />
             </button>
           ))}
         </div>
@@ -48,13 +46,13 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
           {[0, 1, 2].map((index) => (
             <div
               key={index}
-              className="flex h-16 w-16 items-center justify-center border bg-white p-1"
+              className="relative aspect-square h-16 w-16 overflow-hidden border bg-white"
               style={{
                 borderColor: index === 0 ? productTheme.text : productTheme.border,
                 opacity: index === 0 ? 1 : 0.6,
               }}
             >
-              <Image src={galleryImages[0]} alt="" width={56} height={56} className="h-full w-full object-contain" />
+              <Image src={galleryImages[0]} alt="" fill className="object-cover object-center" sizes="64px" />
             </div>
           ))}
         </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import ProductImageFrame from "@/components/products/ProductImageFrame";
 import { productFilters, products } from "@/data/products";
 
 const INITIAL_VISIBLE = 6;
@@ -75,15 +75,12 @@ export default function HomeProductsSection() {
               className="product-card-item group overflow-hidden rounded-3xl border border-[#fee2e2] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-1.5 hover:border-[#fecaca] hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)]"
               style={{ animationDelay: `${index * 60}ms` }}
             >
-              <div className="relative aspect-square w-full overflow-hidden bg-white">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105"
-                />
-              </div>
+              <ProductImageFrame
+                src={product.image}
+                alt={product.title}
+                imageClassName="transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
               <div className="border-t border-[#fef2f2] p-5 md:p-6">
                 <h3 className="text-lg font-normal leading-snug text-black md:text-xl">{product.title}</h3>
                 <span className="mt-4 inline-block text-sm font-normal text-black transition group-hover:translate-x-1">

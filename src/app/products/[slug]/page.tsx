@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageShell from "@/components/layout/PageShell";
 import ProductDetailClient from "@/components/products/ProductDetailClient";
-import { getProductBySlug, getRelatedProducts, products } from "@/data/products";
+import { getProductBySlug, products } from "@/data/products";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,11 +27,9 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = getProductBySlug(slug);
   if (!product) notFound();
 
-  const related = getRelatedProducts(slug, 3);
-
   return (
     <PageShell>
-      <ProductDetailClient product={product} related={related} />
+      <ProductDetailClient product={product} />
     </PageShell>
   );
 }
