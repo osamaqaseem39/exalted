@@ -23,18 +23,34 @@ export default function ProductSpecList({ sections, compact = false }: ProductSp
             {section.title}
           </h3>
           <dl className="space-y-2.5">
-            {section.specs.map((spec) => (
-              <div
-                key={`${section.title}-${spec.label}`}
-                className={`grid gap-x-4 ${compact ? "grid-cols-1 gap-y-1 sm:grid-cols-[130px_1fr]" : "grid-cols-1 gap-y-1 sm:grid-cols-[150px_1fr]"}`}
-              >
-                <dt className="text-sm font-normal text-black">{spec.label}</dt>
-                <dd className="flex gap-2 text-sm font-normal text-black">
-                  <HollowBullet />
-                  <span>{spec.value}</span>
-                </dd>
-              </div>
-            ))}
+            {section.specs.map((spec, index) => {
+              const bulletOnly = spec.label.trim() === "";
+
+              if (bulletOnly) {
+                return (
+                  <div
+                    key={`${section.title}-${index}`}
+                    className="flex gap-2 text-sm font-normal text-black"
+                  >
+                    <HollowBullet />
+                    <span>{spec.value}</span>
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={`${section.title}-${spec.label}`}
+                  className={`grid gap-x-4 ${compact ? "grid-cols-1 gap-y-1 sm:grid-cols-[130px_1fr]" : "grid-cols-1 gap-y-1 sm:grid-cols-[150px_1fr]"}`}
+                >
+                  <dt className="text-sm font-normal text-black">{spec.label}</dt>
+                  <dd className="flex gap-2 text-sm font-normal text-black">
+                    <HollowBullet />
+                    <span>{spec.value}</span>
+                  </dd>
+                </div>
+              );
+            })}
           </dl>
         </section>
       ))}

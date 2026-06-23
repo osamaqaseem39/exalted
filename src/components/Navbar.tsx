@@ -58,7 +58,7 @@ function NavbarBar({
     <div
       className={`relative flex items-center ${
         floating
-          ? "mx-auto w-full max-w-none justify-between px-4 py-3 lg:w-fit lg:max-w-[calc(100%-1.5rem)] lg:justify-center lg:gap-1 lg:rounded-full lg:border lg:border-white/80 lg:bg-white/55 lg:px-5 lg:py-2.5 lg:shadow-[0_12px_40px_rgba(0,0,0,0.14)] lg:backdrop-blur-2xl"
+          ? "mx-auto w-full max-w-none justify-between bg-white px-4 py-3 shadow-sm max-lg:border-b max-lg:border-[#fee2e2] lg:w-fit lg:max-w-[calc(100%-1.5rem)] lg:justify-center lg:gap-1 lg:rounded-full lg:border lg:border-white/80 lg:bg-white/90 lg:px-5 lg:py-2.5 lg:shadow-[0_12px_40px_rgba(0,0,0,0.14)] lg:backdrop-blur-2xl"
           : "mx-auto w-full max-w-6xl justify-between px-4 py-3 sm:px-6 sm:py-4"
       }`}
     >
@@ -126,7 +126,7 @@ function NavbarBar({
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
         onClick={() => setMobileOpen((prev) => !prev)}
-        className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#fee2e2] text-black transition hover:bg-[#fef2f2] lg:hidden"
+        className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-[#fecaca] bg-white text-black shadow-sm transition hover:bg-[#fef2f2] lg:hidden"
       >
         {mobileOpen ? (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,7 +148,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const productsActive = pathname.startsWith("/products");
-  const showFloating = scrolled && !mobileOpen;
+  const showFloating = scrolled;
 
   useEffect(() => {
     const onScroll = () => {
@@ -177,7 +177,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="relative z-40 border-b border-[#fee2e2] bg-white/95 backdrop-blur-md"
+        className="relative z-40 border-b border-[#fee2e2] bg-white max-lg:z-50 lg:bg-white/95 lg:backdrop-blur-md"
         onMouseLeave={() => setProductsOpen(false)}
       >
         <NavbarBar floating={false} {...barProps} />
@@ -189,10 +189,10 @@ export default function Navbar() {
       </header>
 
       <header
-        className={`fixed left-0 right-0 top-0 z-50 bg-transparent py-2 transition-all duration-300 ease-out lg:py-3 ${
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ease-out max-lg:bg-white lg:bg-transparent lg:py-3 ${
           showFloating
-            ? "pointer-events-auto translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-3 opacity-0"
+            ? "pointer-events-auto translate-y-0 opacity-100 max-lg:shadow-sm"
+            : "pointer-events-none -translate-y-3 opacity-0 max-lg:hidden"
         }`}
         onMouseLeave={() => setProductsOpen(false)}
         aria-hidden={!showFloating}

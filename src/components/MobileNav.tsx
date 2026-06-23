@@ -35,7 +35,7 @@ export default function MobileNav({ open, onClose, pathname }: MobileNavProps) {
   if (!open) return null;
 
   return (
-    <nav className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-[#fee2e2] bg-white lg:hidden">
+    <nav className="fixed left-0 right-0 top-[4.5rem] z-40 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-[#fee2e2] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)] lg:hidden">
       <div className="px-4 py-4">
         <button
           type="button"
