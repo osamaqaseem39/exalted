@@ -9,9 +9,19 @@ function formatProductList(names: string[]) {
   return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`;
 }
 
+function getCardProductName(title: string) {
+  return title
+    .replace(/^Metal Detector for /i, "")
+    .replace(/^Famjet /i, "")
+    .replace(/\s+X-Ray Inspection System$/i, "")
+    .replace(/\s+TIJ Printer$/i, "")
+    .replace(/\s+Metal Detector$/i, "");
+}
+
 function buildDescription(shortDescription: string, productNames: string[]) {
   if (productNames.length === 0) return shortDescription;
-  return `${shortDescription} Includes ${formatProductList(productNames)}.`;
+  const labels = productNames.map(getCardProductName);
+  return `${shortDescription} Includes ${formatProductList(labels)}.`;
 }
 
 export default function TechnologyCards() {

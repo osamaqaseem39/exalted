@@ -143,7 +143,7 @@ export const technologies: Technology[] = [
     industries: ["Food & Beverage", "Industrial Manufacturing", "Tobacco & Specialty"],
     image: "/images/technologies/continuous-inkjet.png",
     iconImage: "/images/technologies/continuous-inkjet.png",
-    relatedProductSlugs: ["famjet-pleyon-tij", "famjet-m5-tij"],
+    relatedProductSlugs: ["famjet-pleyon", "famjet-m5"],
     relatedSolutionSlugs: ["printing-equipment"],
   },
   {
@@ -169,7 +169,7 @@ export const technologies: Technology[] = [
     industries: ["Pharma & Life Sciences", "Packaging & FMCG", "Personal Care & Cosmetics"],
     image: "/images/technologies/digital-printing.png",
     iconImage: "/images/technologies/digital-printing.png",
-    relatedProductSlugs: ["famjet-pleyon-tij", "famjet-m5-tij", "laser-printing-systems"],
+    relatedProductSlugs: ["famjet-pleyon", "famjet-m5", "laser-printing-systems"],
     relatedSolutionSlugs: ["printing-equipment", "track-trace"],
   },
   {
@@ -221,7 +221,7 @@ export const technologies: Technology[] = [
     industries: ["Food & Beverage", "Industrial Manufacturing", "Packaging & FMCG"],
     image: "/images/technologies/large-character-printing.png",
     iconImage: "/images/technologies/large-character-printing.png",
-    relatedProductSlugs: ["laser-printing-systems", "famjet-pleyon-tij"],
+    relatedProductSlugs: ["laser-printing-systems", "famjet-pleyon"],
     relatedSolutionSlugs: ["printing-equipment", "labeling"],
   },
   {
@@ -247,7 +247,7 @@ export const technologies: Technology[] = [
     industries: ["Pharma & Life Sciences", "Food & Beverage", "Personal Care & Cosmetics"],
     image: "/images/technologies/thermal-inkjet.png",
     iconImage: "/images/technologies/thermal-inkjet.png",
-    relatedProductSlugs: ["famjet-pleyon-tij", "famjet-m5-tij"],
+    relatedProductSlugs: ["famjet-pleyon", "famjet-m5"],
     relatedSolutionSlugs: ["printing-equipment", "track-trace"],
   },
   {
@@ -273,7 +273,7 @@ export const technologies: Technology[] = [
     industries: ["Food & Beverage", "Pharma & Life Sciences", "Packaging & FMCG"],
     image: "/images/technologies/thermal-transfer.png",
     iconImage: "/images/technologies/thermal-transfer.png",
-    relatedProductSlugs: ["automatic-labeling-machine", "famjet-pleyon-tij"],
+    relatedProductSlugs: ["automatic-labeling-machine", "famjet-pleyon"],
     relatedSolutionSlugs: ["printing-equipment", "labeling"],
   },
 ];

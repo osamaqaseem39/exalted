@@ -92,67 +92,81 @@ export const productSpecSectionsBySlug: Record<string, ProductSpecSection[]> = {
     ),
     section("MODEL", [{ label: "Series", value: "NWC-3000 ABACUS" }]),
   ],
-  "nad4000-alcon": [
-    section("SPECIFICATIONS", [
-      { label: "Model", value: "NAD4000" },
-      { label: "Passing Width (PW)", value: "240 mm" },
-      { label: "Passing Height (PH)", value: "Min. 50 & Max. 150 mm (adjustable by every 10 mm)" },
-      { label: "Sensor", value: "Magnetic" },
-      { label: "Belt Width (BW)", value: "240 mm" },
-    ]),
-  ],
-  "pipeline-metal-detector": [
+  "conveyor-metal-detector": [
     featureSection(
-      "KEY FEATURES",
-      "For inspecting liquid and pasty product like juice, sauces, jam, soup and etc.",
-      "Offering the highest levels of sensitivity for inspecting various types of pumped product, meats, slurries and sauces.",
-      "Applicable for high temperature liquid (up to 80°C).",
-      "Metal separation using a ball valve system.",
-      "Effective rejecting system to minimize product loss without a need to stop the operation during metal separation.",
-      "Wash-down okay.",
-      "Unrivalled detection sensitivity — high frequency technology combined with enhanced filtering techniques delivers the highest levels of sensitivity across all metal types.",
-      "Full colour touch screen (7 inch TFT LCD) with intuitive interface, regional languages and user manual."
+      "OVERVIEW",
+      "The conveyor type metal detector is the most widely demanded model. It is a suitable model for packed and bulk products which are carried on conveyor system."
     ),
-    section("MODEL", [{ label: "Series", value: "NMD530 Steamer" }]),
+    section("MODEL", [{ label: "Series", value: "SEEKER" }]),
   ],
   "pharma-metal-detector": [
     featureSection(
       "KEY FEATURES",
-      "Sensitivity well beyond industry standards.",
-      "Closed coil system for perfect detection.",
-      "High quality filter for more precise detection.",
-      "Polished stainless steel 304 detecting head can process up to 15,000 tablets per minute.",
-      "Auto absorption function for vibration, impact, noise and etc.",
-      "Dust proof & water proof standard (IP66) authentication.",
-      "Diverter system — mirror-polished stainless steel grade 316 solenoid type reject diverter system.",
-      "Designed for easy dismantlement and cleaning.",
-      "Failsafe feature for contaminated products not to be accepted in the event of a mechanism or electrical fault.",
-      "Fitted with FDA approved material and a transparent cover enabling product flow to be monitored easily."
+      "Excellent performance.",
+      "Easy installation due to compact design.",
+      "Applicable to various types of production line due to its adjustable height structure.",
+      "Easy moving by casters.",
+      "Easy maintenance and cleaning due to design for disassembly without tools.",
+      "Manageable metal detecting history.",
+      "Standard satisfaction of GMP."
     ),
-    section("MODEL", [{ label: "Series", value: "NMD530 Medic" }]),
+    section("MODEL", [{ label: "Series", value: "PHARMA / MEDIC" }]),
   ],
-  "bulk-metal-detector": [
+  "fall-type-metal-detector": [
+    featureSection(
+      "OVERVIEW",
+      "For inspecting powder and fine-grained bulk materials at food line, chemistry and various fields."
+    ),
     featureSection(
       "KEY FEATURES",
-      "Offering the highest levels of sensitivity for inspecting various types of powders and fine-grained bulk materials.",
-      "Ideal for inspecting product while in-flight between the weigher and bagger.",
-      "Metal separation using a reject diverter system.",
-      "Flap type reject diverter system is suitable for various types of powders and fine-grained bulk materials.",
-      "Minimal installation space — instalment in restricted spaces in vertical packaging application between the weigher and bagger.",
-      "Unrivalled detection sensitivity — high frequency technology combined with enhanced filtering techniques delivers the highest levels of sensitivity across all metal types."
+      "Easy operating.",
+      "Unrivalled detection sensitivity.",
+      "Suitable for free falling a weigher and a bag maker.",
+      "The detection part and controller are basic options.",
+      "The frame is an optional part.",
+      "Output detection signal.",
+      "The diverter is an optional part."
     ),
-    section("MODEL", [{ label: "Series", value: "NMD530 Quicker" }]),
+    section("MODEL", [{ label: "Series", value: "FALL / QUICKER" }]),
   ],
-  "conveyor-metal-detector": [
+  "pipe-type-metal-detector": [
+    featureSection(
+      "OVERVIEW",
+      "For inspecting liquid and pastry product."
+    ),
     featureSection(
       "KEY FEATURES",
-      "High performance for metal detection.",
-      "Closed coil system for perfect detection.",
-      "High quality filter for more precise detection.",
-      "Auto absorption function for vibration, impact, noise and etc.",
-      "Dust proof & water proof standard (IP66) authentication."
+      "Metal separation using a ball valve system for minimum loss and continuous production.",
+      "Washing down.",
+      "Applicable for high temperature product (Max. 80°C).",
+      "Applicable for stand pipe size (1.5S, 2S and others).",
+      "Output detection signal.",
+      "The valve is optional part."
     ),
-    section("MODEL", [{ label: "Series", value: "NMD530 Seeker" }]),
+    section("MODEL", [{ label: "Series", value: "PIPE / STEAMER" }]),
+  ],
+  "aluminum-packaged-metal-detector": [
+    featureSection(
+      "OVERVIEW",
+      "Detect metal contamination packed in aluminium."
+    ),
+    featureSection(
+      "KEY FEATURES",
+      "Without hazardous X-Rays.",
+      "Wear-free detecting system.",
+      "No need to care about product effect & hot temperature.",
+      "Usable with every type of aluminum-packaged products.",
+      "Easy & user friendly design.",
+      "Password setup function.",
+      "Low investment and maintenance cost.",
+      "No need to be certified or inspected by government law.",
+      "Product orientation does not influence the signal strength.",
+      "Easy to learn & no need to train an operator.",
+      "Connectivity to various external devices.",
+      "Manageable metal detecting history.",
+      "Easy software update."
+    ),
+    section("MODEL", [{ label: "Series", value: "ALCON" }]),
   ],
   "markem-imaje-5800": [
     featureSection(
@@ -389,29 +403,70 @@ export const productSpecSectionsBySlug: Record<string, ProductSpecSection[]> = {
       "Conveyor-ready integration."
     ),
   ],
-  "x-ray-inspection-system": [
+  "fscan-3280d": [
     featureSection(
       "KEY FEATURES",
-      "F-SCAN series.",
-      "Foreign object detection.",
-      "Pipeline and conveyor models."
+      "X-ray automatic inspection system for packaged products on production lines.",
+      "FSCAN-Series platform with integrated control and monitoring.",
+      "Detects foreign objects in sealed food and pharma packaging.",
+      "Designed with user convenience in mind.",
+      "Customization available according to user requirements and applications, including software and other specifications."
     ),
+    section("MODEL", [{ label: "Model", value: "FSCAN-3280D" }]),
   ],
-  "famjet-pleyon-tij": [
+  "fscan-4280db": [
+    featureSection(
+      "OVERVIEW",
+      "This equipment is designed to inspect foreign objects in products in a bulk state rather than in a packaged condition."
+    ),
     featureSection(
       "KEY FEATURES",
-      "Up to 2400 dpi resolution.",
-      "9˝ touchscreen interface.",
-      "1D & 2D barcode printing."
+      "Provides excellent detection performance for medium-density foreign materials within non-uniform products.",
+      "Designed with user convenience in mind.",
+      "Customization is available according to user requirements and applications, including software, table size, and other specifications."
     ),
+    section("MODEL", [{ label: "Model", value: "FSCAN-4280DB" }]),
   ],
-  "famjet-m5-tij": [
+  "fscan-4500dp": [
+    featureSection(
+      "OVERVIEW",
+      "This is a pipeline-type inspection system. Detects foreign objects in products on food processing production lines."
+    ),
     featureSection(
       "KEY FEATURES",
-      "HP TIJ technology.",
-      "Maintenance-free operation.",
-      "Compact printhead design."
+      "Provides excellent detection performance for medium-density foreign materials within non-uniform products.",
+      "Designed with user convenience in mind.",
+      "Customization is available according to user requirements and applications, including software, table size, and other specifications."
     ),
+    section("MODEL", [{ label: "Model", value: "FSCAN-4500DP" }]),
+  ],
+  "famjet-m5": [
+    featureSection(
+      "OVERVIEW",
+      "Industrial TIJ performance accessible even for entry-level budgets, with ½″ HP 2.5 disposable cartridges for all types of surfaces."
+    ),
+    section("MODEL", [{ label: "Model", value: "Famjet M5" }]),
+  ],
+  "famjet-m7": [
+    featureSection(
+      "OVERVIEW",
+      "The simple and flexible TIJ solution for in-line carton coding using 1″ disposable cartridges."
+    ),
+    section("MODEL", [{ label: "Model", value: "Famjet M7" }]),
+  ],
+  "famjet-m9": [
+    featureSection(
+      "OVERVIEW",
+      "The Famjet TIJ in its most complete configuration: up to 4 HP 2.5 ½″ disposable cartridges, I/O interface, and integrated NiceLabel driver to meet any variable data printing requirement."
+    ),
+    section("MODEL", [{ label: "Model", value: "Famjet M9" }]),
+  ],
+  "famjet-pleyon": [
+    featureSection(
+      "OVERVIEW",
+      "The HP 2.5 TIJ solution for high-volume printing on all types of surfaces, featuring ½″ cartridges with a 400 ml bulk solvent-based ink system, reduces printing costs by over 60%."
+    ),
+    section("MODEL", [{ label: "Model", value: "Famjet Pleyon" }]),
   ],
   "automatic-labeling-machine": [
     featureSection(

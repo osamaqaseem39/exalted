@@ -148,58 +148,54 @@ export const products: Product[] = [
     points: ["Front & back labeling", "Wrinkle-free sponge press", "±1 mm accuracy"],
   },
   {
-    slug: "pharma-metal-detector",
-    tag: "Detection",
-    brand: "NOW Systems · Korea",
-    title: "Pharma Metal Detector",
-    image: "/images/products/pharma-metal-detector.jpeg",
-    description:
-      "NMD530 Medic series pharmaceutical metal detector with closed coil detection, IP66 rating, and grade 316 diverter — processing up to 15,000 tablets per minute with failsafe rejection.",
-    points: [
-      "NMD530 Medic series",
-      "Up to 15,000 tablets/min",
-      "IP66 with grade 316 diverter",
-    ],
-  },
-  {
     slug: "conveyor-metal-detector",
     tag: "Detection",
     brand: "NOW Systems · Korea",
     title: "Conveyor Type Metal Detector",
-    image: "/images/products/conveyor-metal-detector.jpeg",
+    image: "/images/products/conveyor-type-seeker.png",
     description:
-      "NMD530 Seeker series conveyor metal detector with closed coil system, high-quality filtering, and IP66 enclosure for reliable contamination detection on packaging lines.",
-    points: ["NMD530 Seeker series", "Closed coil detection", "IP66 rated enclosure"],
+      "The conveyor type metal detector is the most widely demanded model — suitable for packed and bulk products carried on a conveyor system. SEEKER series with closed coil detection and IP66 enclosure.",
+    points: ["Most widely demanded model", "Packed & bulk products", "SEEKER series"],
   },
   {
-    slug: "pipeline-metal-detector",
+    slug: "pharma-metal-detector",
     tag: "Detection",
     brand: "NOW Systems · Korea",
-    title: "Pipeline Metal Detector",
-    image: "/images/products/pipeline-metal-detector.jpeg",
+    title: "Pharmaceutical Type Metal Detector",
+    image: "/images/products/pharmaceutical-type-medic.png",
     description:
-      "NMD530 Steamer series pipeline detector for liquid and pasty products up to 80°C. Ball valve rejection, wash-down design, and 7-inch colour touch screen HMI.",
-    points: ["NMD530 Steamer series", "Liquid & pasty products", "Ball valve rejection"],
+      "Pharmaceutical type metal detector with compact design, adjustable height, casters for easy moving, and GMP-compliant construction. Ideal for tablet, capsule, and pharma production lines.",
+    points: ["Compact GMP design", "Adjustable height structure", "Easy maintenance & cleaning"],
   },
   {
-    slug: "bulk-metal-detector",
+    slug: "fall-type-metal-detector",
     tag: "Detection",
     brand: "NOW Systems · Korea",
-    title: "Bulk Metal Detector",
-    image: "/images/products/conveyor-metal-detector.jpeg",
+    title: "Fall Type Metal Detector",
+    image: "/images/products/fall-type-quicker.png",
     description:
-      "NMD530 Quicker series detector for powders and fine-grained bulk materials. Flap-type diverter ideal for vertical packaging lines between weigher and bagger with minimal footprint.",
-    points: ["NMD530 Quicker series", "Powder & bulk inspection", "Flap reject diverter"],
+      "Fall type metal detector for inspecting powder and fine-grained bulk materials in food, chemical, and industrial lines. Suitable for free-falling product between a weigher and bag maker.",
+    points: ["Powder & fine-grained bulk", "Free-fall inspection", "QUICKER series"],
   },
   {
-    slug: "nad4000-alcon",
+    slug: "pipe-type-metal-detector",
     tag: "Detection",
     brand: "NOW Systems · Korea",
-    title: "NAD4000 Series Alcon",
-    image: "/images/products/conveyor-metal-detector.jpeg",
+    title: "Pipe Type Metal Detector",
+    image: "/images/products/pipe-type-steamer.png",
     description:
-      "NAD4000 metal detection system with 240 mm passing width, adjustable passing height 50–150 mm, magnetic sensor, and 240 mm belt width for conveyor integration.",
-    points: ["240 mm passing width", "Adjustable height 50–150 mm", "Magnetic sensor"],
+      "Pipe type metal detector for inspecting liquid and pastry products. Ball valve metal separation for minimum product loss, wash-down design, and high temperature capability up to 80°C.",
+    points: ["Liquid & pastry products", "Ball valve separation", "Wash-down — up to 80°C"],
+  },
+  {
+    slug: "aluminum-packaged-metal-detector",
+    tag: "Detection",
+    brand: "NOW Systems · Korea",
+    title: "Metal Detector for Aluminum Packaged Products",
+    image: "/images/products/aluminum-packaged-alcon.png",
+    description:
+      "ALCON metal detector finds contamination in aluminum-packaged products without hazardous X-rays. Wear-free detecting system with no product effect or hot temperature concerns.",
+    points: ["Aluminum foil & pouch packs", "No X-ray required", "ALCON series"],
   },
   {
     slug: "barcode-printer-station",
@@ -212,14 +208,34 @@ export const products: Product[] = [
     points: ["Industrial barcode printing", "PC-controlled workflow", "Conveyor-ready integration"],
   },
   {
-    slug: "x-ray-inspection-system",
+    slug: "fscan-3280d",
     tag: "Inspection",
     brand: "Xavis · Korea",
-    title: "X-Ray Inspection System",
-    image: "/images/products/x-ray-inspection-system.jpeg",
+    title: "FSCAN-3280D X-Ray Inspection System",
+    image: "/images/products/fscan-3280d.png",
     description:
-      "F-SCAN series X-ray inspection for foreign object detection in food, pharma, and packaging applications. Available in pipeline and conveyor configurations for inline quality assurance.",
-    points: ["F-SCAN series", "Foreign object detection", "Pipeline and conveyor models"],
+      "FSCAN-3280D X-ray automatic inspection system for packaged products on conveyor lines. Detects foreign objects in sealed food and pharma packs with user-friendly FSCAN-Series control and rejection integration.",
+    points: ["Packaged product inspection", "FSCAN-Series platform", "Conveyor-line integration"],
+  },
+  {
+    slug: "fscan-4280db",
+    tag: "Inspection",
+    brand: "Xavis · Korea",
+    title: "FSCAN-4280DB X-Ray Inspection System",
+    image: "/images/products/fscan-4280db.png",
+    description:
+      "FSCAN-4280DB inspects foreign objects in bulk product rather than packaged condition. Excellent detection performance for medium-density foreign materials within non-uniform products.",
+    points: ["Bulk product inspection", "Non-uniform product detection", "Customizable configuration"],
+  },
+  {
+    slug: "fscan-4500dp",
+    tag: "Inspection",
+    brand: "Xavis · Korea",
+    title: "FSCAN-4500DP X-Ray Inspection System",
+    image: "/images/products/fscan-4500dp.png",
+    description:
+      "FSCAN-4500DP is a pipeline-type X-ray inspection system that detects foreign objects on food processing production lines with excellent medium-density contaminant detection.",
+    points: ["Pipeline-type inspection", "Food processing lines", "Medium-density detection"],
   },
   {
     slug: "automatic-check-weigher",
@@ -322,24 +338,44 @@ export const products: Product[] = [
     points: ["Plug-n-print — zero maintenance", "100% solvent compatible", "30% ink savings"],
   },
   {
-    slug: "famjet-pleyon-tij",
-    tag: "Printing",
-    brand: "Famjet · Italy",
-    title: "Famjet Pleyon TIJ Printer",
-    image: "/images/products/famjet-pleyon-tij.jpeg",
-    description:
-      "High-resolution thermal inkjet printer delivering up to 2400 dpi for crisp codes on cartons, labels, and flexible packaging. 9-inch touchscreen interface with 1D and 2D barcode support.",
-    points: ["Up to 2400 dpi resolution", "9˝ touchscreen interface", "1D & 2D barcode printing"],
-  },
-  {
-    slug: "famjet-m5-tij",
+    slug: "famjet-m5",
     tag: "Printing",
     brand: "Famjet · Italy",
     title: "Famjet M5 TIJ Printer",
-    image: "/images/products/famjet-m5-tij.jpeg",
+    image: "/images/products/famjet-m5.png",
     description:
-      "Compact HP TIJ printhead system with maintenance-free operation for reliable industrial coding. Ideal for secondary packaging and variable data printing on production lines.",
-    points: ["HP TIJ technology", "Maintenance-free operation", "Compact printhead design"],
+      "Industrial TIJ performance accessible even for entry-level budgets, with ½″ HP 2.5 disposable cartridges for all types of surfaces.",
+    points: ["Entry-level TIJ", "½″ HP 2.5 cartridges", "All surface types"],
+  },
+  {
+    slug: "famjet-m7",
+    tag: "Printing",
+    brand: "Famjet · Italy",
+    title: "Famjet M7 TIJ Printer",
+    image: "/images/products/famjet-m7.png",
+    description:
+      "The simple and flexible TIJ solution for in-line carton coding using 1″ disposable cartridges.",
+    points: ["In-line carton coding", "1″ disposable cartridges", "Simple & flexible"],
+  },
+  {
+    slug: "famjet-m9",
+    tag: "Printing",
+    brand: "Famjet · Italy",
+    title: "Famjet M9 TIJ Printer",
+    image: "/images/products/famjet-m9.png",
+    description:
+      "The Famjet TIJ in its most complete configuration: up to 4 HP 2.5 ½″ disposable cartridges, I/O interface, and integrated NiceLabel driver to meet any variable data printing requirement.",
+    points: ["Up to 4 HP cartridges", "I/O interface", "NiceLabel driver integrated"],
+  },
+  {
+    slug: "famjet-pleyon",
+    tag: "Printing",
+    brand: "Famjet · Italy",
+    title: "Famjet Pleyon TIJ Printer",
+    image: "/images/products/famjet-pleyon.png",
+    description:
+      "The HP 2.5 TIJ solution for high-volume printing on all types of surfaces, featuring ½″ cartridges with a 400 ml bulk solvent-based ink system — reduces printing costs by over 60%.",
+    points: ["High-volume TIJ printing", "400 ml bulk ink system", "Over 60% cost reduction"],
   },
   {
     slug: "laser-printing-systems",
@@ -385,6 +421,15 @@ export const products: Product[] = [
 
 export const featuredProductSlug = "laser-printing-systems";
 
+const productSlugAliases: Record<string, string> = {
+  "pipeline-metal-detector": "pipe-type-metal-detector",
+  "bulk-metal-detector": "fall-type-metal-detector",
+  "nad4000-alcon": "aluminum-packaged-metal-detector",
+  "x-ray-inspection-system": "fscan-3280d",
+  "famjet-pleyon-tij": "famjet-pleyon",
+  "famjet-m5-tij": "famjet-m5",
+};
+
 export function getProductsByCategory(category: string) {
   if (category === "All") return products;
   return products.filter((p) => p.tag === category);
@@ -395,7 +440,8 @@ export function getCategoryCount(categoryId: string) {
 }
 
 export function getProductBySlug(slug: string) {
-  return products.find((p) => p.slug === slug);
+  const resolvedSlug = productSlugAliases[slug] ?? slug;
+  return products.find((p) => p.slug === resolvedSlug);
 }
 
 export function getFeaturedProduct(category: string = "All") {

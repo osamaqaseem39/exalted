@@ -9,7 +9,15 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  const aliasSlugs = Object.keys({
+    "pipeline-metal-detector": true,
+    "bulk-metal-detector": true,
+    "nad4000-alcon": true,
+    "x-ray-inspection-system": true,
+    "famjet-pleyon-tij": true,
+    "famjet-m5-tij": true,
+  });
+  return [...products.map((product) => ({ slug: product.slug })), ...aliasSlugs.map((slug) => ({ slug }))];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
