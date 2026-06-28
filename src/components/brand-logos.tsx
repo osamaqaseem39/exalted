@@ -1,6 +1,44 @@
+import Image from "next/image";
+
 type BrandLogoProps = {
   className?: string;
 };
+
+export function NowSystemsLogo({ className = "" }: BrandLogoProps) {
+  return (
+    <div className={`text-center leading-none ${className}`}>
+      <p className="text-xl font-normal italic tracking-tight text-[#1D4ED8]">NOW</p>
+      <p className="mt-0.5 text-[10px] font-normal italic tracking-[0.25em] text-[#1D4ED8]">SYSTEMS</p>
+    </div>
+  );
+}
+
+export function FamjetLogo({ className = "" }: BrandLogoProps) {
+  return (
+    <div className={`text-center leading-none ${className}`}>
+      <p className="text-xl font-normal tracking-[0.2em] text-[#8b1010]">FAMJET</p>
+      <p className="mt-0.5 text-[8px] tracking-[0.3em] text-black/45">ITALY</p>
+    </div>
+  );
+}
+
+export function XavisLogo({ className = "" }: BrandLogoProps) {
+  return (
+    <div className={`text-center leading-none ${className}`}>
+      <p className="text-xl font-normal tracking-wide text-[#1E40AF]">XAVIS</p>
+      <p className="mt-0.5 text-[8px] tracking-[0.2em] text-black/45">KOREA</p>
+    </div>
+  );
+}
+
+export function AlphapackLogo({ className = "" }: BrandLogoProps) {
+  return (
+    <div className={`flex items-center gap-1 ${className}`}>
+      <span className="text-2xl font-normal text-[#38BDF8]">α</span>
+      <span className="text-lg font-normal tracking-widest text-[#0EA5E9]">PACK</span>
+    </div>
+  );
+}
 
 export function MarkemImajeLogo({ className = "" }: BrandLogoProps) {
   return (
@@ -17,21 +55,6 @@ export function MarkemImajeLogo({ className = "" }: BrandLogoProps) {
         <p className="text-[8px] tracking-wide text-[#9CA3AF]">a Dover company</p>
       </div>
     </div>
-  );
-}
-
-export function NowSystemsLogo({ className = "" }: BrandLogoProps) {
-  return (
-    <div className={`text-center leading-none ${className}`}>
-      <p className="text-xl font-normal italic tracking-tight text-[#1D4ED8]">NOW</p>
-      <p className="mt-0.5 text-[10px] font-normal italic tracking-[0.25em] text-[#1D4ED8]">SYSTEMS</p>
-    </div>
-  );
-}
-
-export function MicroscanLogo({ className = "" }: BrandLogoProps) {
-  return (
-    <p className={`text-lg font-extrabold tracking-wide text-[#DC2626] ${className}`}>MICROSCAN</p>
   );
 }
 
@@ -58,11 +81,22 @@ export function AnserU2Logo({ className = "" }: BrandLogoProps) {
   );
 }
 
-export function AlphapackLogo({ className = "" }: BrandLogoProps) {
+export function IntelliCodeLogo({ className = "" }: BrandLogoProps) {
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
-      <span className="text-2xl font-normal text-[#38BDF8]">α</span>
-      <span className="text-lg font-normal tracking-widest text-[#0EA5E9]">PACK</span>
-    </div>
+    <p className={`text-base font-normal text-black ${className}`}>
+      Intelli<span className="text-[#8b1010]">Code</span>
+    </p>
+  );
+}
+
+export function ExaltedLogo({ className = "" }: BrandLogoProps) {
+  return (
+    <Image
+      src="/images/exalted-logo.png"
+      alt="Exalted Coding & Packing Solutions"
+      width={120}
+      height={36}
+      className={`h-9 w-auto max-w-[7.5rem] object-contain ${className}`}
+    />
   );
 }

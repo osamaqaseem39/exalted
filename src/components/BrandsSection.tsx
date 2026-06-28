@@ -1,19 +1,26 @@
 import {
   AlphapackLogo,
   AnserU2Logo,
+  ExaltedLogo,
+  FamjetLogo,
+  IntelliCodeLogo,
   MapleJetLogo,
   MarkemImajeLogo,
-  MicroscanLogo,
   NowSystemsLogo,
+  XavisLogo,
 } from "@/components/brand-logos";
 
+/** Partner brands whose products appear in the Exalted catalog */
 const brands = [
-  { name: "Markem-Imaje", Logo: MarkemImajeLogo },
   { name: "NOW Systems", Logo: NowSystemsLogo },
-  { name: "Microscan", Logo: MicroscanLogo },
+  { name: "Famjet", Logo: FamjetLogo },
+  { name: "Xavis", Logo: XavisLogo },
+  { name: "Alphapack", Logo: AlphapackLogo },
+  { name: "Markem-Imaje", Logo: MarkemImajeLogo },
   { name: "MapleJet", Logo: MapleJetLogo },
   { name: "Anser U2", Logo: AnserU2Logo },
-  { name: "Alpha Pack", Logo: AlphapackLogo },
+  { name: "IntelliCode", Logo: IntelliCodeLogo },
+  { name: "Exalted", Logo: ExaltedLogo },
 ];
 
 type BrandsSectionProps = {
@@ -50,14 +57,18 @@ export default function BrandsSection({
             <h2 className="mt-3 text-3xl font-normal text-black md:text-4xl">Our brands</h2>
             <div className="mx-auto mt-4 h-px w-16 bg-[#fee2e2]" />
             <p className="mx-auto mt-5 max-w-2xl text-base text-black/70">
-              World-renowned manufacturers we represent across Pakistan.
+              Manufacturers we represent — matched to the products in our catalog.
             </p>
           </div>
         ) : (
-          <p className="text-sm font-normal text-black/40">Our brands</p>
+          <p className="text-center text-sm font-normal text-black/50">
+            Manufacturers we represent across Pakistan
+          </p>
         )}
 
-        <ul className={`grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 ${variant === "section" ? "mt-10 md:mt-12" : "mt-6"}`}>
+        <ul
+          className={`grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 ${variant === "section" ? "mt-10 md:mt-12" : "mt-6"}`}
+        >
           {brands.map(({ name, Logo }) => (
             <li key={name}>
               <div className="flex h-[4.5rem] items-center justify-center rounded-xl border border-[#fee2e2] bg-white px-3 transition hover:border-[#fecaca] hover:shadow-sm">

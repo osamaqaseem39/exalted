@@ -13,8 +13,12 @@ function getCardProductName(title: string) {
   return title
     .replace(/^Metal Detector for /i, "")
     .replace(/^Famjet /i, "")
+    .replace(/^NWC-3000 Series Abacus /i, "NWC-3000 Abacus ")
     .replace(/\s+X-Ray Inspection System$/i, "")
     .replace(/\s+TIJ Printer$/i, "")
+    .replace(/\s+Check Weigher$/i, "")
+    .replace(/\s+Weighing System$/i, "")
+    .replace(/\s+Weighing$/i, "")
     .replace(/\s+Metal Detector$/i, "");
 }
 

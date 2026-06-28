@@ -238,14 +238,64 @@ export const products: Product[] = [
     points: ["Pipeline-type inspection", "Food processing lines", "Medium-density detection"],
   },
   {
-    slug: "automatic-check-weigher",
+    slug: "automatic-weighing",
     tag: "Weighing",
     brand: "NOW Systems · Korea",
-    title: "NWC-3000 Series Abacus Check Weigher",
-    image: "/images/products/automatic-check-weigher.jpeg",
+    title: "Automatic Weighing",
+    image: "/images/products/weighing/automatic-weighing.jpg",
     description:
-      "NWC-3000 ABACUS dynamic check weigher with automatic optimal weighing setup, smartphone monitoring, external device I/O, and optional metal detector integration.",
-    points: ["Auto optimal weighing setup", "Smartphone monitoring", "Metal detector integration"],
+      "NWC-3000 ABACUS automatic check weigher with optimal weighing setup, smartphone monitoring, external device I/O, and optional metal detector integration.",
+    points: ["NWC-3000 ABACUS series", "Smartphone monitoring", "Metal detector integration"],
+  },
+  {
+    slug: "heavy-weighing",
+    tag: "Weighing",
+    brand: "NOW Systems · Korea",
+    title: "Heavy Weighing Check Weigher",
+    image: "/images/products/weighing/heavy-weighing.jpg",
+    description:
+      "Heavy-duty check weigher built for large, dense, or high-mass products requiring robust construction and accurate dynamic weighing on industrial production lines.",
+    points: ["Heavy-duty construction", "Large pack weighing", "Industrial line integration"],
+  },
+  {
+    slug: "high-speed-automatic-weighing",
+    tag: "Weighing",
+    brand: "NOW Systems · Korea",
+    title: "High Speed Automatic Weighing",
+    image: "/images/products/weighing/high-speed-automatic-weighing.jpg",
+    description:
+      "High-speed automatic check weigher for fast-moving food, beverage, and FMCG lines — delivering accurate weight verification without slowing production throughput.",
+    points: ["High-speed in-motion weighing", "Fast line throughput", "Automatic rejection"],
+  },
+  {
+    slug: "metal-detector-check-weigher",
+    tag: "Weighing",
+    brand: "NOW Systems · Korea",
+    title: "Metal Detector & Check Weigher",
+    image: "/images/products/weighing/metal-detector-check-weigher.jpg",
+    description:
+      "Combined metal detector and check weigher system for single-pass contamination detection and weight verification — reducing footprint and simplifying line integration.",
+    points: ["Metal detection & weighing", "Single-pass inspection", "Compact line integration"],
+  },
+  {
+    slug: "multi-lane-high-accuracy-weighing",
+    tag: "Weighing",
+    brand: "NOW Systems · Korea",
+    title: "Multi Lane High Accuracy Weighing",
+    image: "/images/products/weighing/multi-lane-high-accuracy-weighing.jpg",
+    description:
+      "Multi-lane check weigher delivering high accuracy weight verification across parallel production lanes — ideal for multi-pack and high-precision giveaway control.",
+    points: ["Multi-lane configuration", "High accuracy weighing", "Parallel lane inspection"],
+  },
+  {
+    slug: "multi-lane-high-speed-weighing",
+    tag: "Weighing",
+    brand: "NOW Systems · Korea",
+    title: "Multi Lane High Speed Weighing",
+    image: "/images/products/weighing/multi-lane-high-speed-weighing.jpg",
+    description:
+      "Multi-lane high-speed check weigher for demanding production environments where multiple lanes require simultaneous weight verification at line speed.",
+    points: ["Multi-lane high speed", "Simultaneous lane weighing", "High-throughput lines"],
   },
   {
     slug: "markem-imaje-5800",
@@ -428,6 +478,7 @@ const productSlugAliases: Record<string, string> = {
   "x-ray-inspection-system": "fscan-3280d",
   "famjet-pleyon-tij": "famjet-pleyon",
   "famjet-m5-tij": "famjet-m5",
+  "automatic-check-weigher": "automatic-weighing",
 };
 
 export function getProductsByCategory(category: string) {

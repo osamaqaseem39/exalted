@@ -73,7 +73,52 @@ export const productSpecSectionsBySlug: Record<string, ProductSpecSection[]> = {
       "Equipped with bottle separating wheel to keep distance between two bottles."
     ),
   ],
-  "automatic-check-weigher": [
+  "heavy-weighing": [
+    featureSection(
+      "KEY FEATURES",
+      "Heavy-duty check weigher for large and dense products.",
+      "Robust construction for industrial production environments.",
+      "Accurate dynamic weighing for high-mass packs.",
+      "Integrated rejection for overweight and underweight products."
+    ),
+  ],
+  "high-speed-automatic-weighing": [
+    featureSection(
+      "KEY FEATURES",
+      "High-speed in-motion weighing without reducing line throughput.",
+      "Automatic weight verification at production speed.",
+      "Programmable tolerance bands and rejection control.",
+      "Ideal for fast-moving food and beverage lines."
+    ),
+  ],
+  "metal-detector-check-weigher": [
+    featureSection(
+      "KEY FEATURES",
+      "Combined metal detection and check weighing in one system.",
+      "Single-pass inspection for contamination and weight.",
+      "Reduced footprint compared to separate devices.",
+      "Synchronized rejection for metal and weight faults."
+    ),
+  ],
+  "multi-lane-high-accuracy-weighing": [
+    featureSection(
+      "KEY FEATURES",
+      "Multi-lane check weigher for parallel production lanes.",
+      "High accuracy weight verification for giveaway control.",
+      "Independent lane monitoring and rejection.",
+      "Suitable for multi-pack and precision weighing applications."
+    ),
+  ],
+  "multi-lane-high-speed-weighing": [
+    featureSection(
+      "KEY FEATURES",
+      "Multi-lane configuration for high-speed production lines.",
+      "Simultaneous weight check across multiple lanes.",
+      "Maintains throughput on demanding packaging lines.",
+      "Production statistics and lane-level reporting."
+    ),
+  ],
+  "automatic-weighing": [
     featureSection(
       "KEY FEATURES",
       "By inputting throughput, optimal weighing conditions can be automatically set.",

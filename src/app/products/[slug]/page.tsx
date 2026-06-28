@@ -16,6 +16,7 @@ export function generateStaticParams() {
     "x-ray-inspection-system": true,
     "famjet-pleyon-tij": true,
     "famjet-m5-tij": true,
+    "automatic-check-weigher": true,
   });
   return [...products.map((product) => ({ slug: product.slug })), ...aliasSlugs.map((slug) => ({ slug }))];
 }
