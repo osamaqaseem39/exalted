@@ -31,6 +31,8 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
               key={`${src}-${index}`}
               type="button"
               onClick={() => setActiveIndex(index)}
+              aria-label={`View image ${index + 1} of ${galleryImages.length}`}
+              aria-current={activeIndex === index ? "true" : undefined}
               className="relative aspect-square h-16 w-16 overflow-hidden border bg-white"
               style={{
                 borderColor: activeIndex === index ? productTheme.text : productTheme.border,
@@ -38,22 +40,6 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
             >
               <Image src={src} alt="" fill className="object-cover object-center" sizes="64px" />
             </button>
-          ))}
-        </div>
-      )}
-      {galleryImages.length === 1 && (
-        <div className="mt-3 flex gap-2">
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              className="relative aspect-square h-16 w-16 overflow-hidden border bg-white"
-              style={{
-                borderColor: index === 0 ? productTheme.text : productTheme.border,
-                opacity: index === 0 ? 1 : 0.6,
-              }}
-            >
-              <Image src={galleryImages[0]} alt="" fill className="object-cover object-center" sizes="64px" />
-            </div>
           ))}
         </div>
       )}

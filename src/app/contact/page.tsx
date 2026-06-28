@@ -28,7 +28,7 @@ export default function ContactPage() {
           <div className="space-y-5 lg:col-span-2">
             <article className="rounded-2xl border border-[#fee2e2] bg-white p-6 shadow-sm">
               <h2 className="text-lg font-normal text-black">{offices.karachi.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-black">{offices.karachi.address}</p>
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-black">{offices.karachi.address}</p>
               <a
                 href={`tel:${offices.karachi.phone.replace(/-/g, "")}`}
                 className="mt-3 block text-sm font-normal text-black transition hover:text-black"
@@ -48,7 +48,7 @@ export default function ContactPage() {
             <article className="rounded-2xl border border-[#fecaca] bg-[#fef2f2] p-6 shadow-sm">
               <p className="text-xs font-normal text-black">Head office</p>
               <h2 className="mt-1 text-lg font-normal text-black">{offices.lahore.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-black">{offices.lahore.address}</p>
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-black">{offices.lahore.address}</p>
               <a
                 href={`mailto:${offices.lahore.email}`}
                 className="mt-3 block text-sm font-normal text-black transition hover:text-black"

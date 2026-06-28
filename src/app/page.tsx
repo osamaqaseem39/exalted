@@ -101,8 +101,9 @@ export default function Home() {
         <section
           id="contact-section"
           data-reveal
-          className="mx-auto max-w-6xl translate-y-8 px-6 pb-16 opacity-0 transition-all duration-700 md:pb-20"
+          className="translate-y-8 border-t border-[#fee2e2] bg-[#fafafa] py-16 opacity-0 transition-all duration-700 md:py-20"
         >
+          <div className="mx-auto max-w-6xl px-6">
           <div className="overflow-hidden rounded-2xl border border-[#fee2e2] bg-white p-5 shadow-sm md:p-6">
             <div className="mb-5 border-b border-[#fee2e2] pb-4">
               <p className="text-xs font-normal text-black">Get in touch</p>
@@ -113,7 +114,7 @@ export default function Home() {
             </div>
 
             <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-              <form onSubmit={handleContactSubmit} className="rounded-xl border border-[#fee2e2] bg-[#fef2f2] p-4 md:p-5">
+              <form onSubmit={handleContactSubmit} className="rounded-xl border border-[#fee2e2] bg-[#fafafa] p-4 md:p-5">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="block">
                     <span className="mb-1 block text-xs font-normal text-black">Full Name *</span>
@@ -203,17 +204,17 @@ export default function Home() {
               </form>
 
               <div className="flex flex-col justify-between gap-3">
-                <div className="rounded-xl border border-[#fee2e2] bg-[#fef2f2] p-4 text-sm">
+                <div className="rounded-xl border border-[#fee2e2] bg-[#fafafa] p-4 text-sm">
                   <div className="space-y-3">
                     <div>
                       <h4 className="text-sm font-normal text-black">Karachi</h4>
-                      <p className="mt-1 text-xs leading-relaxed text-black">
+                      <p className="mt-1 text-xs font-semibold leading-relaxed text-black">
                         House#100, Block-AI Sector-31/D, Korangi, Karachi
                       </p>
                     </div>
                     <div>
                       <h4 className="text-sm font-normal text-black">Lahore (Head Office)</h4>
-                      <p className="mt-1 text-xs leading-relaxed text-black">
+                      <p className="mt-1 text-xs font-semibold leading-relaxed text-black">
                         949-B Block, Faisal Town, Lahore - 54770
                       </p>
                     </div>
@@ -245,6 +246,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
 
